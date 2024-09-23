@@ -20,18 +20,18 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class AwsS3Service {
+public class AwsS3FileService implements FileService {
 
     private final AmazonS3 amazonS3;
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public AwsS3 upload(MultipartFile multipartFile, String directoryName) throws IOException {
+    public String upload(MultipartFile multipartFile, String directoryName) throws IOException {
         File file = convertMultipartFileToFile(multipartFile)
                 .orElseThrow(() -> new AwsS3Handler(ResponseCode.S3_UPLOAD_FAIL));
 
-        return upload(file, directoryName);
+        return upload(file, directoryName).getPath();
     }
 
     private AwsS3 upload(File file, String directoryName) {
@@ -65,7 +65,7 @@ public class AwsS3Service {
         file.delete();
     }
 
-    public Optional<File> convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
+    private Optional<File> convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
         File file = new File(System.getProperty("user.dir") + "/" + multipartFile.getOriginalFilename());
 
         if(file.createNewFile()) {
@@ -77,10 +77,10 @@ public class AwsS3Service {
         return Optional.empty();
     }
 
-    public void remove(AwsS3 awsS3) {
-        if (!amazonS3.doesObjectExist(bucket, awsS3.getKey())) {
-            throw new AmazonS3Exception("Object " + awsS3.getKey() + " does not exist!");
+    public void remove(String path) {
+        if (!amazonS3.doesObjectExist(bucket, path)) {
+            throw new AmazonS3Exception("Object " + path + " does not exist!");
         }
-        amazonS3.deleteObject(bucket, awsS3.getKey());
+        amazonS3.deleteObject(bucket, path);
     }
 }

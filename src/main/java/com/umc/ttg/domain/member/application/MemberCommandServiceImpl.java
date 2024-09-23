@@ -9,7 +9,7 @@ import com.umc.ttg.global.common.AwsS3;
 import com.umc.ttg.global.common.BaseResponseDto;
 import com.umc.ttg.global.common.ResponseCode;
 import com.umc.ttg.global.error.handler.AwsS3Handler;
-import com.umc.ttg.global.util.AwsS3Service;
+import com.umc.ttg.global.util.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import java.io.IOException;
 public class MemberCommandServiceImpl implements MemberCommandService {
 
     private final MemberRepository memberRepository;
-    private final AwsS3Service awsS3Service;
+    private final FileService awsS3FileService;
 
     @Override
     @Transactional
@@ -48,9 +48,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     private String getS3ImageLink(MultipartFile multipartFile) throws IOException {
 
-        AwsS3 memberImage = awsS3Service.upload(multipartFile, "memberImage");
-
-        return memberImage.getPath();
+        return awsS3FileService.upload(multipartFile, "memberImage");
 
     }
 

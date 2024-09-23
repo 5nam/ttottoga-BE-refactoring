@@ -19,7 +19,7 @@ import com.umc.ttg.domain.store.repository.StoreRepository;
 import com.umc.ttg.global.common.AwsS3;
 import com.umc.ttg.global.common.BaseResponseDto;
 import com.umc.ttg.global.common.ResponseCode;
-import com.umc.ttg.global.util.AwsS3Service;
+import com.umc.ttg.global.util.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final StoreRepository storeRepository;
     private final MemberRepository memberRepository;
     private final CouponRepository couponRepository;
-    private final AwsS3Service awsS3Service;
+    private final FileService awsS3FileService;
 
     @Override
     @Transactional
@@ -78,8 +78,9 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     }
 
     private String getS3ImageLink(MultipartFile multipartFile) throws IOException {
-        AwsS3 storeImage = awsS3Service.upload(multipartFile, "qrImage");
-        return storeImage.getPath();
+
+        return awsS3FileService.upload(multipartFile, "qrImage");
+
     }
 
 }
