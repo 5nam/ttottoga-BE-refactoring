@@ -1,4 +1,4 @@
-package com.umc.ttg.global.util;
+package com.umc.ttg.global.util.file;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -7,6 +7,8 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.umc.ttg.global.common.AwsS3;
 import com.umc.ttg.global.common.ResponseCode;
 import com.umc.ttg.global.error.handler.AwsS3Handler;
+import com.umc.ttg.global.util.uuid.SystemUuidHolder;
+import com.umc.ttg.global.util.uuid.UuidHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import java.util.UUID;
 public class AwsS3FileService implements FileService {
 
     private final AmazonS3 amazonS3;
+    private final UuidHolder uuidHolder;
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -48,7 +51,7 @@ public class AwsS3FileService implements FileService {
     }
 
     private String randomFileName(File file, String directoryName) {
-        return directoryName + "/" + UUID.randomUUID() + file.getName();
+        return directoryName + "/" + uuidHolder.randomUuid() + file.getName();
     }
 
     private String putS3(File uploadFile, String fileName) {

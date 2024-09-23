@@ -1,7 +1,8 @@
-package com.umc.ttg.global.util;
+package com.umc.ttg.global.util.file;
 
 import com.umc.ttg.global.common.ResponseCode;
 import com.umc.ttg.global.error.handler.LocalFileHandler;
+import com.umc.ttg.global.util.uuid.UuidHolder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,6 +20,8 @@ public class LocalFileService implements FileService {
     @Value("${local.upload.directory}")
     private String fileUploadDir;
     private final static int FILE_MAX_SIZE = 104_857_600; // 100MB
+
+    private final UuidHolder uuidHolder;
 
     @Override
     public String upload(MultipartFile multipartFile, String directoryName) throws IOException {
@@ -36,7 +38,7 @@ public class LocalFileService implements FileService {
             throw new LocalFileHandler(ResponseCode.FILE_CONTENT_TYPE_NOT_IMAGE);
         }
 
-        String randomFileName = directoryName + "/" + UUID.randomUUID() + originalFileName;
+        String randomFileName = directoryName + "/" + uuidHolder.randomUuid() + originalFileName;
         File file = new File(fileUploadDir + "/" + randomFileName);
 
         // file 저장

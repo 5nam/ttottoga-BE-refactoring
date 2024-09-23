@@ -1,10 +1,8 @@
-package com.umc.ttg.global.util;
+package com.umc.ttg.global.util.file;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
 public interface FileService {
     String upload(MultipartFile multipartFile, String directoryName) throws IOException;
