@@ -28,7 +28,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MemberServiceImpl implements MemberService{
+public class AuthServiceImpl implements AuthService {
     private final MemberRepository memberRepository;
     private final TokenParser tokenParser;
 

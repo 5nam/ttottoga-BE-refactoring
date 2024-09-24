@@ -5,10 +5,10 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
-public interface MemberService {
-    public List<Member> findAll();
-    public Member findMemberByName(String name);
-    public String retrieveName(HttpServletRequest request);
+public interface AuthService {
+    List<Member> findAll();
+    Member findMemberByName(String name);
+    String retrieveName(HttpServletRequest request);
     String permitAllAccess(HttpServletRequest request);
     Long permitMemberOnly(HttpServletRequest request);
 

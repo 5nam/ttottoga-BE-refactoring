@@ -23,7 +23,6 @@ public class MemberQueryServiceImpl implements MemberQueryService {
     private final MemberRepository memberRepository;
     private final CouponRepository couponRepository;
     private final ReviewRepository reviewRepository;
-    private final MemberService memberService;
 
     @Override
     public BaseResponseDto<MyPageAllResponseDto> myPageLookUp(String memberName) {

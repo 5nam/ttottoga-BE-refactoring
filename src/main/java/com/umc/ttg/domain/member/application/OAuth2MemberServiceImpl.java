@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class OAuth2MemberServiceImpl extends DefaultOAuth2UserService {
-    private final MemberService memberService;
+    private final AuthService authService;
     private final MemberRepository memberRepository;
     @Override
     public OAuth2User loadUser(OAuth2UserRequest request) throws OAuth2AuthenticationException {
@@ -59,7 +59,7 @@ public class OAuth2MemberServiceImpl extends DefaultOAuth2UserService {
             // 없으면, 회원가입 후 로그인
 
 
-        if(memberService.findMemberByName(member.getName()) == null) {
+        if(authService.findMemberByName(member.getName()) == null) {
             memberRepository.save(member);
         }
 //        else {

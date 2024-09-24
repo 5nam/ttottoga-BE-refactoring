@@ -2,7 +2,7 @@ package com.umc.ttg.domain.member.api;
 
 import com.umc.ttg.domain.member.application.MemberCommandService;
 import com.umc.ttg.domain.member.application.MemberQueryService;
-import com.umc.ttg.domain.member.application.MemberService;
+import com.umc.ttg.domain.member.application.AuthService;
 import com.umc.ttg.domain.member.dto.MemberImageRequestDTO;
 import com.umc.ttg.domain.member.dto.MemberImageResponseDTO;
 import com.umc.ttg.domain.member.dto.MyPageAllResponseDto;
@@ -24,12 +24,12 @@ public class MemberController {
 
     private final MemberQueryService memberQueryService;
     private final MemberCommandService memberCommandService;
-    private final MemberService memberService;
+    private final AuthService authService;
 
     @GetMapping("/profile")
     public BaseResponseDto<MyPageAllResponseDto> getMyPage(HttpServletRequest request) {
 
-        String memberName = memberService.retrieveName(request);
+        String memberName = authService.retrieveName(request);
 
         return memberQueryService.myPageLookUp(memberName);
     }
@@ -39,15 +39,15 @@ public class MemberController {
             (@ModelAttribute @Valid MemberImageRequestDTO memberImageRequestDTO,
              HttpServletRequest request) throws IOException {
 
-        String memberName = memberService.retrieveName(request);
+        String memberName = authService.retrieveName(request);
 
         return memberCommandService.updateImage(memberImageRequestDTO, memberName);
     }
 
     @GetMapping
     public BaseResponseDto<Member> retrieveMember(HttpServletRequest request) {
-        String name = memberService.retrieveName(request);
-        Member member = memberService.findMemberByName(name);
+        String name = authService.retrieveName(request);
+        Member member = authService.findMemberByName(name);
 
         return BaseResponseDto.onSuccess(member, ResponseCode.OK);
     }
@@ -55,12 +55,12 @@ public class MemberController {
     // for server confirmation
     @GetMapping("/all")
     public List<Member> checkAuthorized() {
-        return memberService.findAll();
+        return authService.findAll();
     }
 
     // for server confirmation
     @GetMapping("/id")
     public BaseResponseDto retrieveAccessTokenInfo(HttpServletRequest request) {
-        return BaseResponseDto.onSuccess(memberService.retrieveName(request), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(authService.retrieveName(request), ResponseCode.OK);
     }
 }

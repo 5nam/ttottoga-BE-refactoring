@@ -1,6 +1,6 @@
 package com.umc.ttg.global.auth.jwt;
 
-import com.umc.ttg.domain.member.application.MemberService;
+import com.umc.ttg.domain.member.application.AuthService;
 import com.umc.ttg.domain.member.entity.Member;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -26,11 +26,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final MemberService memberService;
+    private final AuthService authService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String name = memberService.retrieveName(request);
+            String name = authService.retrieveName(request);
 
             if (name == null) {
                 log.info("not have userId!!!!");
@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
             log.info("Find token!!!![userId] : " + name);
 
-            Member member = memberService.findMemberByName(name);
+            Member member = authService.findMemberByName(name);
             String role = member.getRole();
 
             List<GrantedAuthority> authorities = new ArrayList<>();
