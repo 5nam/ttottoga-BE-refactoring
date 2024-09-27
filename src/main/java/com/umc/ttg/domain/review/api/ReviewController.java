@@ -1,7 +1,7 @@
 package com.umc.ttg.domain.review.api;
 
 import com.google.zxing.WriterException;
-import com.umc.ttg.domain.member.application.AuthService;
+import com.umc.ttg.domain.auth.application.AuthService;
 import com.umc.ttg.domain.review.application.ReviewCommandService;
 import com.umc.ttg.domain.review.dto.ReviewRegisterRequestDTO;
 import com.umc.ttg.domain.review.dto.ReviewRegisterResponseDTO;

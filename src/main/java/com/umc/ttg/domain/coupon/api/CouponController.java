@@ -3,7 +3,7 @@ package com.umc.ttg.domain.coupon.api;
 import com.google.zxing.WriterException;
 import com.umc.ttg.domain.coupon.application.CouponService;
 import com.umc.ttg.domain.coupon.dto.CouponResponseDto;
-import com.umc.ttg.domain.member.application.AuthService;
+import com.umc.ttg.domain.auth.application.AuthService;
 import com.umc.ttg.global.common.BaseResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

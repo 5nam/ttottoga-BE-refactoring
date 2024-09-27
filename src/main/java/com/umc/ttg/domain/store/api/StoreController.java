@@ -1,6 +1,6 @@
 package com.umc.ttg.domain.store.api;
 
-import com.umc.ttg.domain.member.application.AuthService;
+import com.umc.ttg.domain.auth.application.AuthService;
 import com.umc.ttg.domain.store.application.StoreCommandService;
 import com.umc.ttg.domain.store.application.StoreQueryService;
 import com.umc.ttg.domain.store.dto.*;
