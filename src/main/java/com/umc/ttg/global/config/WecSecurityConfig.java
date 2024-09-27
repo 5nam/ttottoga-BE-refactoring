@@ -14,8 +14,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @RequiredArgsConstructor
 public class WecSecurityConfig {
 
-    private final AuthService authService;
-    private final static String[] possiblePath = {};
+    private final static String[] possiblePath = {"/login", "/signup", "/"};
 
     @Bean
     public WebSecurityCustomizer configure() {
@@ -31,7 +30,7 @@ public class WecSecurityConfig {
         return httpSecurity
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry
                         -> authorizationManagerRequestMatcherRegistry
-                        .requestMatchers("/login", "/signup", "user").permitAll()
+                        .requestMatchers(possiblePath).permitAll()
                         .anyRequest().authenticated()
                 ).build();
     }
