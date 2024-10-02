@@ -1,6 +1,5 @@
 package com.umc.ttg.domain.store.api;
 
-import com.umc.ttg.domain.auth.application.AuthService;
 import com.umc.ttg.domain.store.application.StoreCommandService;
 import com.umc.ttg.domain.store.application.StoreQueryService;
 import com.umc.ttg.domain.store.dto.*;
@@ -24,7 +23,7 @@ public class StoreController {
 
     private final StoreCommandService storeCommandService;
     private final StoreQueryService storeQueryService;
-    private final AuthService authService;
+//    private final AuthService authService;
 
     @PostMapping
     public BaseResponseDto<StoreResponseDto> createStore(@ModelAttribute @Valid StoreRequestDto storeRequestDto) throws IOException {
@@ -40,7 +39,12 @@ public class StoreController {
          * Header 토큰에서 멤버 ID 받아오는 로직 추가 예정
          * Header 에서 Barer token 이 없을 경우 null 을 반환하는 로직 추가
          */
-        String memberName = authService.permitAllAccess(request);
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
+
 
         return storeQueryService.findStore(storeId, memberName);
 
@@ -60,7 +64,11 @@ public class StoreController {
          * Header 토큰에서 멤버 ID 받아오는 로직 추가 예정
          * Header 에서 Barer token 이 없을 경우 null 을 반환하는 로직 추가
          */
-        String memberName = authService.permitAllAccess(request);
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
 
         return storeQueryService.findStoreByRegion(regionId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
 
@@ -75,8 +83,11 @@ public class StoreController {
          * Header 토큰에서 멤버 ID 받아오는 로직 추가 예정
          * Header 에서 Barer token 이 없을 경우 null 을 반환하는 로직 추가
          */
-        String memberName = authService.permitAllAccess(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeQueryService.findStoreByMenu(menuId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
 
     }
@@ -90,8 +101,11 @@ public class StoreController {
          */
 
         // Test MemberId
-        String memberName = authService.permitAllAccess(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeQueryService.getHome(memberName);
 
     }
@@ -105,8 +119,11 @@ public class StoreController {
          * Header 토큰에서 멤버 ID 받아오는 로직 추가 예정
          * Header 에서 Barer token 이 없을 경우 null 을 반환하는 로직 추가
          */
-        String memberName = authService.permitAllAccess(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeQueryService.searchStore(keyword, page.orElse(0), size.orElse(20), memberName);
 
     }
@@ -128,8 +145,11 @@ public class StoreController {
                                                                          @RequestParam Optional<Integer> size,
                                                                          HttpServletRequest request) {
 
-        String memberName = authService.retrieveName(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeQueryService.getHeartStores(page.orElse(0), size.orElse(20), memberName);
 
     }
@@ -137,16 +157,22 @@ public class StoreController {
     @PostMapping("/{store-id}/heart")
     public BaseResponseDto<HeartStoreResponseDto> insertHeartStore (@PathVariable("store-id") Long storeId, HttpServletRequest request) {
 
-        String memberName = authService.retrieveName(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeCommandService.insertHeart(storeId, memberName);
     }
 
     @DeleteMapping("/{store-id}/heart")
     public BaseResponseDto<HeartStoreResponseDto> deleteHeartStore (@PathVariable("store-id") Long storeId, HttpServletRequest request) {
 
-        String memberName = authService.retrieveName(request);
-
+        /**
+         * FIXME: 로그인 구현 후 수정
+         */
+//        String memberName = authService.permitAllAccess(request);
+        String memberName = "";
         return storeCommandService.deleteHeart(storeId, memberName);
     }
 

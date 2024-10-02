@@ -1,6 +1,6 @@
 package com.umc.ttg.global.config;
 
-import com.umc.ttg.domain.auth.application.AuthService;
+//import com.umc.ttg.domain.auth.application.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
