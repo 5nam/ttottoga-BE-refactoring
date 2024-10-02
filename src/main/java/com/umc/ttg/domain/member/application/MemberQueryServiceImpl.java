@@ -3,7 +3,7 @@ package com.umc.ttg.domain.member.application;
 import com.umc.ttg.domain.coupon.repository.CouponRepository;
 import com.umc.ttg.domain.member.dto.MyPageAllResponseDto;
 import com.umc.ttg.domain.member.dto.converter.MemberConverter;
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.exception.handler.MemberHandler;
 import com.umc.ttg.domain.member.repository.MemberRepository;
 import com.umc.ttg.domain.review.dto.MyPageReviewResponseDTO;
@@ -29,15 +29,15 @@ public class MemberQueryServiceImpl implements MemberQueryService {
 
         //String memberName = request.getUserPrincipal().getName();
 
-        Member member = memberRepository.findByName(memberName)
+        MemberEntity memberEntity = memberRepository.findByName(memberName)
                 .orElseThrow(() -> new MemberHandler(ResponseCode.MEMBER_NOT_FOUND));
 
-        List<MyPageReviewResponseDTO> reviews = reviewRepository.findAllByMemberId(member.getId())
-                .stream().map(review -> MyPageReviewResponseDTO.of(member.getId(), review, couponRepository))
+        List<MyPageReviewResponseDTO> reviews = reviewRepository.findAllByMemberId(memberEntity.getId())
+                .stream().map(review -> MyPageReviewResponseDTO.of(memberEntity.getId(), review, couponRepository))
                 .collect(Collectors.toList());
 
         MyPageAllResponseDto myPageDto = new MyPageAllResponseDto();
-        myPageDto.setMember(MemberConverter.convertToMyMemberDto(member));
+        myPageDto.setMember(MemberConverter.convertToMyMemberDto(memberEntity));
         myPageDto.setReviewDtos(reviews);
 
         return BaseResponseDto.onSuccess(myPageDto, ResponseCode.OK);

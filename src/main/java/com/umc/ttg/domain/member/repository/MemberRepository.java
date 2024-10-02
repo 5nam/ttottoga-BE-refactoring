@@ -1,11 +1,11 @@
 package com.umc.ttg.domain.member.repository;
 
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findById(Long memberId);
-    Optional<Member> findByName(String name);
+public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+    Optional<MemberEntity> findById(Long memberId);
+    Optional<MemberEntity> findByName(String name);
 }

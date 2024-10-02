@@ -1,6 +1,6 @@
 package com.umc.ttg.domain.coupon.dto;
 
-import com.umc.ttg.domain.coupon.entity.Coupon;
+import com.umc.ttg.domain.coupon.entity.CouponEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,16 +31,16 @@ public class CouponResponseDto {
         this.endDate = endDate;
     }
 
-    public static CouponResponseDto of(Coupon coupon) {
+    public static CouponResponseDto of(CouponEntity couponEntity) {
         return CouponResponseDto.builder()
-                .id(coupon.getId())
-                .name(coupon.getName())
-                .subtitle(coupon.getContent())
-                .useYn(coupon.getStatusYn())
-                .qrCode(coupon.getQrCode())
-                .storeImage(coupon.getImageUrl())
-                .startDate(coupon.getStartDate())
-                .endDate(coupon.getEndDate())
+                .id(couponEntity.getId())
+                .name(couponEntity.getName())
+                .subtitle(couponEntity.getContent())
+                .useYn(couponEntity.getStatusYn())
+                .qrCode(couponEntity.getQrCode())
+                .storeImage(couponEntity.getImageUrl())
+                .startDate(couponEntity.getStartDate())
+                .endDate(couponEntity.getEndDate())
                 .build();
     }
 

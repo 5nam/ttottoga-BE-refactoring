@@ -1,16 +1,16 @@
 package com.umc.ttg.domain.store.application;
 
-import com.umc.ttg.domain.member.entity.HeartStore;
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.HeartStoreEntity;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.repository.HeartStoreRepository;
 import com.umc.ttg.domain.member.repository.MemberRepository;
-import com.umc.ttg.domain.review.entity.Review;
+import com.umc.ttg.domain.review.entity.ReviewEntity;
 import com.umc.ttg.domain.review.repository.ReviewRepository;
 import com.umc.ttg.domain.store.dto.*;
 import com.umc.ttg.domain.store.dto.converter.StoreConverter;
-import com.umc.ttg.domain.store.entity.Menu;
-import com.umc.ttg.domain.store.entity.Region;
-import com.umc.ttg.domain.store.entity.Store;
+import com.umc.ttg.domain.store.entity.MenuEntity;
+import com.umc.ttg.domain.store.entity.RegionEntity;
+import com.umc.ttg.domain.store.entity.StoreEntity;
 import com.umc.ttg.domain.store.exception.handler.StoreHandler;
 import com.umc.ttg.domain.store.repository.MenuRepository;
 import com.umc.ttg.domain.store.repository.RegionRepository;
@@ -40,15 +40,15 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public BaseResponseDto<StoreFindResponseDto> findStore(Long storeId, String memberName) {
 
-        Member member = validateCorrectMember(memberName);
+        MemberEntity memberEntity = validateCorrectMember(memberName);
 
-        Store store = storeRepository.findById(storeId)
+        StoreEntity storeEntity = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ResponseCode.STORE_NOT_FOUND));
 
-        boolean submitReview = reviewRepository.findByStoreAndMember(store, member).isPresent();
-        boolean heartStore = heartStoreRepository.findByMemberAndStore(member, store).isPresent();
+        boolean submitReview = reviewRepository.findByStoreAndMember(storeEntity, memberEntity).isPresent();
+        boolean heartStore = heartStoreRepository.findByMemberAndStore(memberEntity, storeEntity).isPresent();
 
-        return BaseResponseDto.onSuccess(StoreConverter.convertToStoreFindResponseDto(store, submitReview, heartStore), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(StoreConverter.convertToStoreFindResponseDto(storeEntity, submitReview, heartStore), ResponseCode.OK);
 
     }
 
@@ -61,23 +61,23 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         validatePageAndSize(page, size);
 
-        Member member = validateCorrectMember(memberName);
-        Region region = regionRepository.findById(regionId).orElseThrow(() -> new StoreHandler(ResponseCode.REGION_NOT_FOUND));
+        MemberEntity memberEntity = validateCorrectMember(memberName);
+        RegionEntity regionEntity = regionRepository.findById(regionId).orElseThrow(() -> new StoreHandler(ResponseCode.REGION_NOT_FOUND));
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getStoresByRegion(region, member, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(getStoresByRegion(regionEntity, memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getStoresByRegion(Region region, Member member, Pageable pageable) {
+    private Page<StoreResultResponseDto> getStoresByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> stores =
-                storeRepository.findByRegion(region).stream()
+                storeRepository.findByRegion(regionEntity).stream()
                         .sorted(comparator())
                         .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
                                 store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-                                heartStoreRepository.findByMemberAndStore(member, store).isPresent())).toList();
+                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
 
         return paging(stores,pageable);
 
@@ -88,23 +88,23 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         validatePageAndSize(page, size);
 
-        Member member = validateCorrectMember(memberName);
-        Menu menu = menuRepository.findById(menuId).orElseThrow(() -> new StoreHandler(ResponseCode.MENU_NOT_FOUND));
+        MemberEntity memberEntity = validateCorrectMember(memberName);
+        MenuEntity menuEntity = menuRepository.findById(menuId).orElseThrow(() -> new StoreHandler(ResponseCode.MENU_NOT_FOUND));
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getStoresByMenu(menu, member, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(getStoresByMenu(menuEntity, memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getStoresByMenu(Menu menu, Member member, Pageable pageable) {
+    private Page<StoreResultResponseDto> getStoresByMenu(MenuEntity menuEntity, MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> stores =
-                storeRepository.findByMenu(menu).stream()
+                storeRepository.findByMenu(menuEntity).stream()
                         .sorted(comparator())
                         .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
                                 store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-                                heartStoreRepository.findByMemberAndStore(member, store).isPresent())).toList();
+                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
 
         return paging(stores,pageable);
 
@@ -117,21 +117,21 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         String correctKeyword = validateCorrectKeyword(keyword);
 
-        Member member = validateCorrectMember(memberName);
+        MemberEntity memberEntity = validateCorrectMember(memberName);
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(searchResult(correctKeyword, member, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(searchResult(correctKeyword, memberEntity, pageable), ResponseCode.OK);
     }
 
-    private Page<StoreResultResponseDto> searchResult(String keyword, Member member, Pageable pageable) {
+    private Page<StoreResultResponseDto> searchResult(String keyword, MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> stores =
                 storeRepository.findByTitleContainingOrNameContaining(keyword, keyword).stream()
                         .sorted(comparator())
                         .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
                                 store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-                                heartStoreRepository.findByMemberAndStore(member, store).isPresent())).toList();
+                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
 
         return paging(stores,pageable);
 
@@ -140,18 +140,18 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public BaseResponseDto<Page<StoreResultResponseDto>> getHeartStores(int page, int size, String memberName) {
 
-        Member member = validateCorrectMember(memberName);
+        MemberEntity memberEntity = validateCorrectMember(memberName);
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getPagingHeartStores(member, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(getPagingHeartStores(memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getPagingHeartStores(Member member, Pageable pageable) {
+    private Page<StoreResultResponseDto> getPagingHeartStores(MemberEntity memberEntity, Pageable pageable) {
 
-        List<StoreResultResponseDto> heartStores = heartStoreRepository.findByMember(member).stream()
-                .map(HeartStore::getStore)
+        List<StoreResultResponseDto> heartStores = heartStoreRepository.findByMember(memberEntity).stream()
+                .map(HeartStoreEntity::getStore)
                 .sorted(comparator())
                 .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
                         store.getImage(), store.getServiceInfo(), store.getReviewCount(), true)).toList();
@@ -164,10 +164,10 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     /**
      * 공통 기능들
      */
-    private Comparator<Store> comparator() {
+    private Comparator<StoreEntity> comparator() {
         return Comparator
-                .comparing(Store::getHotYn)
-                .thenComparing(Store::getReviewCount).reversed();
+                .comparing(StoreEntity::getHotYn)
+                .thenComparing(StoreEntity::getReviewCount).reversed();
     }
 
     private Page paging(List<?> stores, Pageable pageable) {
@@ -194,7 +194,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private Member validateCorrectMember(String memberName) {
+    private MemberEntity validateCorrectMember(String memberName) {
 
         if(memberName == null) {
             return null;
@@ -213,10 +213,10 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public BaseResponseDto<HomeResponseDto> getHome(String memberName) {
 
-        Member member = validateCorrectMember(memberName);
+        MemberEntity memberEntity = validateCorrectMember(memberName);
 
         // top 15
-        List<HomeResponseDto.Top15> top15 = getTop15(member);
+        List<HomeResponseDto.Top15> top15 = getTop15(memberEntity);
 
         // hotStore - 랜덤으로
         List<HomeResponseDto.HotStore> hotStore = getHotStore();
@@ -237,11 +237,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     private List<HomeResponseDto.HomeReviews> getHomeReview() {
 
-        List<Review> reviews = reviewRepository.findAll();
+        List<ReviewEntity> reviewEntities = reviewRepository.findAll();
 
-        Collections.shuffle(reviews);
+        Collections.shuffle(reviewEntities);
 
-        return reviews.stream()
+        return reviewEntities.stream()
                 .limit(5)
                 .map(HomeResponseDto.HomeReviews::new)
                 .collect(Collectors.toList());
@@ -261,24 +261,24 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private List<HomeResponseDto.Top15> getTop15(Member member) {
+    private List<HomeResponseDto.Top15> getTop15(MemberEntity memberEntity) {
 
         List<HomeResponseDto.Top15> top15 = new ArrayList<>();
 
-        List<Store> topStores = storeRepository
+        List<StoreEntity> topStoreEntities = storeRepository
                 .findAll(Sort.by(Sort.Direction.DESC, "reviewCount"))
                 .stream().limit(15).toList();
 
-        topStores.forEach(store ->
-                top15.add(new HomeResponseDto.Top15(store, heartStoreRepository.findByMemberAndStore(member, store).isPresent())));
+        topStoreEntities.forEach(store ->
+                top15.add(new HomeResponseDto.Top15(store, heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())));
 
         return top15;
 
     }
 
-    private Member saveTestMember() {
+    private MemberEntity saveTestMember() {
 
-        return memberRepository.save(Member.builder()
+        return memberRepository.save(MemberEntity.builder()
                 .name("test")
                 .nickname("ddd")
                 .profileImage("ddd")

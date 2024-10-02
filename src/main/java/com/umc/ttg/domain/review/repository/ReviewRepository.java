@@ -1,21 +1,21 @@
 package com.umc.ttg.domain.review.repository;
 
-import com.umc.ttg.domain.member.entity.Member;
-import com.umc.ttg.domain.review.entity.Review;
-import com.umc.ttg.domain.store.entity.Store;
+import com.umc.ttg.domain.member.entity.MemberEntity;
+import com.umc.ttg.domain.review.entity.ReviewEntity;
+import com.umc.ttg.domain.store.entity.StoreEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
 import java.util.List;
 
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
 
-    Optional<Review> findByStoreAndMember(Store store, Member member);
+    Optional<ReviewEntity> findByStoreAndMember(StoreEntity storeEntity, MemberEntity memberEntity);
 
-    List<Review> findAllByMemberId(Long memberId);
+    List<ReviewEntity> findAllByMemberId(Long memberId);
 
-    List<Review> findAllByMemberName(String memberName);
+    List<ReviewEntity> findAllByMemberName(String memberName);
 
-    Optional<Review> findByStoreIdAndMemberId(Long storeId, Long memberId);
+    Optional<ReviewEntity> findByStoreIdAndMemberId(Long storeId, Long memberId);
 }

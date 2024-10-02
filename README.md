@@ -147,7 +147,7 @@ Optional<Post> findPost = postRepository.findById(id);
                                                                              
         if (findPost.isEmpty()) {
             throw new IllegalArgumentException("해당 게시글이 없습니다.");
-        } else if (member.getPosition().getNum() < findPost.get().getModifyPermission().getNum()) {
+        } else if (memberEntity.getPosition().getNum() < findPost.get().getModifyPermission().getNum()) {
             throw new IllegalArgumentException("수정 가능한 회원 등급이 아닙니다.");
         }
 ```
@@ -157,7 +157,7 @@ Optional<Post> findPost = postRepository.findById(id);
 ```java
 if(post.isEmpty()) {
             throw new IllegalArgumentException("해당 게시글이 없습니다.");
-        } else if(member.getPosition().getNum() < post.get().getReadablePosition().getNum()){
+        } else if(memberEntity.getPosition().getNum() < post.get().getReadablePosition().getNum()){
             throw new IllegalArgumentException("읽기 가능한 회원 등급이 아닙니다.");
         }
 ```
@@ -175,9 +175,9 @@ if(post.isEmpty()) {
 
 ```java
 @Transactional
-    public SuccessResponse createBookMarkFolder(String folderName, Member member){
+    public SuccessResponse createBookMarkFolder(String folderName, Member memberEntity){
                                                                                           
-        Optional<Member> findMember = memberRepository.findById(member.getId());
+        Optional<Member> findMember = memberRepository.findById(memberEntity.getId());
 		...
 		}
 ```
@@ -188,7 +188,7 @@ if(post.isEmpty()) {
 ttg
     ├── TtgApplication.java
     ├── domain
-    │   ├── coupon
+    │   ├── couponEntity
     │   │   ├── api
     │   │   │   └── CouponController.java
     │   │   ├── application
@@ -210,7 +210,7 @@ ttg
     │   │       ├── BitMatrixToMultipartFileConverter.java
     │   │       ├── CustomMultipartFile.java
     │   │       └── QrCodeGenerator.java
-    │   ├── member
+    │   ├── memberEntity
     │   │   ├── api
     │   │   │   └── MemberController.java
     │   │   ├── application
@@ -238,7 +238,7 @@ ttg
     │   │   └── repository
     │   │       ├── HeartStoreRepository.java
     │   │       └── MemberRepository.java
-    │   ├── review
+    │   ├── reviewEntity
     │   │   ├── api
     │   │   │   └── ReviewController.java
     │   │   ├── application
@@ -256,7 +256,7 @@ ttg
     │   │   │       └── ReviewHandler.java
     │   │   └── repository
     │   │       └── ReviewRepository.java
-    │   └── store
+    │   └── storeEntity
     │       ├── api
     │       │   └── StoreController.java
     │       ├── application

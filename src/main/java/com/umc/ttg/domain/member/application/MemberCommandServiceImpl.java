@@ -2,7 +2,7 @@ package com.umc.ttg.domain.member.application;
 
 import com.umc.ttg.domain.member.dto.MemberImageRequestDTO;
 import com.umc.ttg.domain.member.dto.MemberImageResponseDTO;
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.exception.handler.MemberHandler;
 import com.umc.ttg.domain.member.repository.MemberRepository;
 import com.umc.ttg.global.common.BaseResponseDto;
@@ -29,18 +29,18 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     @Transactional
     public BaseResponseDto<MemberImageResponseDTO> updateImage(MemberImageRequestDTO memberImageRequestDTO, String memberName) throws IOException {
 
-        Member member = memberRepository.findByName(memberName)
+        MemberEntity memberEntity = memberRepository.findByName(memberName)
                 .orElseThrow(() -> new MemberHandler(ResponseCode.MEMBER_NOT_FOUND));
 
         if (!CheckFileExtension(memberImageRequestDTO)) {
             throw new AwsS3Handler(ResponseCode.S3_UPLOAD_FAIL);
         }
 
-        member.setProfileImage(getS3ImageLink(memberImageRequestDTO.getProfileImage()));
+        memberEntity.setProfileImage(getS3ImageLink(memberImageRequestDTO.getProfileImage()));
 
-        memberRepository.save(member);
+        memberRepository.save(memberEntity);
 
-        MemberImageResponseDTO memberImageResponseDTO = new MemberImageResponseDTO(member.getId(), member.getProfileImage());
+        MemberImageResponseDTO memberImageResponseDTO = new MemberImageResponseDTO(memberEntity.getId(), memberEntity.getProfileImage());
 
         return BaseResponseDto.onSuccess(memberImageResponseDTO, ResponseCode.OK);
     }

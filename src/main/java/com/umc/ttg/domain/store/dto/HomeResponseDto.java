@@ -1,8 +1,8 @@
 package com.umc.ttg.domain.store.dto;
 
-import com.umc.ttg.domain.review.entity.Review;
+import com.umc.ttg.domain.review.entity.ReviewEntity;
 import com.umc.ttg.domain.store.dto.converter.StoreConverter;
-import com.umc.ttg.domain.store.entity.Store;
+import com.umc.ttg.domain.store.entity.StoreEntity;
 import lombok.*;
 
 import java.util.List;
@@ -28,11 +28,11 @@ public class HomeResponseDto {
         Integer reviewCount;
         Boolean isHeartStore;
 
-        public Top15(Store store, Boolean isHeartStore) {
-            this.storeId = store.getId();
-            this.storeTitle = store.getTitle();
-            this.storeImage = store.getImage();
-            this.reviewCount = store.getReviewCount();
+        public Top15(StoreEntity storeEntity, Boolean isHeartStore) {
+            this.storeId = storeEntity.getId();
+            this.storeTitle = storeEntity.getTitle();
+            this.storeImage = storeEntity.getImage();
+            this.reviewCount = storeEntity.getReviewCount();
             this.isHeartStore = isHeartStore;
         }
     }
@@ -46,11 +46,11 @@ public class HomeResponseDto {
         String storeImage;
         String serviceInfo;
 
-        public HotStore(Store store) {
-            this.storeId = store.getId();
-            this.storeTitle = store.getTitle();
-            this.storeImage = store.getImage();
-            this.serviceInfo = store.getServiceInfo();
+        public HotStore(StoreEntity storeEntity) {
+            this.storeId = storeEntity.getId();
+            this.storeTitle = storeEntity.getTitle();
+            this.storeImage = storeEntity.getImage();
+            this.serviceInfo = storeEntity.getServiceInfo();
         }
     }
 
@@ -66,14 +66,14 @@ public class HomeResponseDto {
         String storeName;
         String reviewLink;
 
-        public HomeReviews(Review review) {
-            this.reviewId = review.getId();
-            this.reviewImage = StoreConverter.convertToReviewImage(review);
-            this.profileImage = StoreConverter.convertToReviewProfileImage(review);
-            this.nickname = StoreConverter.convertToReviewNickname(review);
-            this.reviewTitle = StoreConverter.convertToReviewTitle(review);
-            this.storeName = review.getStore().getName();
-            this.reviewLink = review.getReviewLink();
+        public HomeReviews(ReviewEntity reviewEntity) {
+            this.reviewId = reviewEntity.getId();
+            this.reviewImage = StoreConverter.convertToReviewImage(reviewEntity);
+            this.profileImage = StoreConverter.convertToReviewProfileImage(reviewEntity);
+            this.nickname = StoreConverter.convertToReviewNickname(reviewEntity);
+            this.reviewTitle = StoreConverter.convertToReviewTitle(reviewEntity);
+            this.storeName = reviewEntity.getStore().getName();
+            this.reviewLink = reviewEntity.getReviewLink();
         }
     }
 

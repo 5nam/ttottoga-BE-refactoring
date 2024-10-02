@@ -3,10 +3,10 @@ package com.umc.ttg.domain.coupon.application;
 import com.google.zxing.WriterException;
 import com.umc.ttg.domain.coupon.dto.CouponResponseDto;
 import com.umc.ttg.domain.coupon.dto.converter.CouponConverter;
-import com.umc.ttg.domain.coupon.entity.Coupon;
+import com.umc.ttg.domain.coupon.entity.CouponEntity;
 import com.umc.ttg.domain.coupon.exception.handler.CouponHandler;
 import com.umc.ttg.domain.coupon.repository.CouponRepository;
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.repository.MemberRepository;
 import com.umc.ttg.global.common.BaseResponseDto;
 import com.umc.ttg.global.common.ResponseCode;
@@ -37,35 +37,35 @@ public class CouponServiceImpl implements CouponService {
     }
     @Override
     public BaseResponseDto<CouponResponseDto> getCouponDetails(Long couponId, Long memberId) throws IOException, WriterException {
-        Coupon coupon = getCoupon(couponId, memberId);
+        CouponEntity couponEntity = getCoupon(couponId, memberId);
 
-        return BaseResponseDto.onSuccess(CouponResponseDto.of(coupon), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(CouponResponseDto.of(couponEntity), ResponseCode.OK);
     }
 
     @Override
     @Transactional
     public BaseResponseDto<String> useCoupon(Long couponId, Long memberId) {
-        Coupon coupon = getCoupon(couponId, memberId);
+        CouponEntity couponEntity = getCoupon(couponId, memberId);
 
         // 직원 확인
-        if (coupon.getStatusYn().equals('Y')) {
-            coupon.updateStatus('N');
+        if (couponEntity.getStatusYn().equals('Y')) {
+            couponEntity.updateStatus('N');
             getMember(memberId).updateBenefitCount();
         }
 
-        return BaseResponseDto.onSuccess(CouponConverter.convertToCouponUsage(coupon), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(CouponConverter.convertToCouponUsage(couponEntity), ResponseCode.OK);
     }
 
-    private Member getMember(Long memberId) {
-        Member foundMember = memberRepository.findById(memberId)
+    private MemberEntity getMember(Long memberId) {
+        MemberEntity foundMemberEntity = memberRepository.findById(memberId)
                 .orElseThrow(() -> new CouponHandler(ResponseCode.MEMBER_NOT_FOUND));
-        return foundMember;
+        return foundMemberEntity;
     }
 
-    private Coupon getCoupon(Long couponId, Long memberId) {
-        Coupon foundCoupon = couponRepository.findByIdAndMemberId(couponId, memberId)
+    private CouponEntity getCoupon(Long couponId, Long memberId) {
+        CouponEntity foundCouponEntity = couponRepository.findByIdAndMemberId(couponId, memberId)
                 .orElseThrow(() -> new CouponHandler(ResponseCode.COUPON_NOT_FOUND));
-        return foundCoupon;
+        return foundCouponEntity;
     }
 
 }

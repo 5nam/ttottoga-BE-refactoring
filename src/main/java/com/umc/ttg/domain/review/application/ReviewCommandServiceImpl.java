@@ -1,19 +1,19 @@
 package com.umc.ttg.domain.review.application;
 
 import com.google.zxing.WriterException;
-import com.umc.ttg.domain.coupon.entity.Coupon;
+import com.umc.ttg.domain.coupon.entity.CouponEntity;
 import com.umc.ttg.domain.coupon.repository.CouponRepository;
 import com.umc.ttg.domain.coupon.utils.QrCodeGenerator;
-import com.umc.ttg.domain.member.entity.Member;
+import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.exception.handler.MemberHandler;
 import com.umc.ttg.domain.member.repository.MemberRepository;
 import com.umc.ttg.domain.review.dto.ReviewRegisterRequestDTO;
 import com.umc.ttg.domain.review.dto.ReviewRegisterResponseDTO;
-import com.umc.ttg.domain.review.entity.Review;
+import com.umc.ttg.domain.review.entity.ReviewEntity;
 import com.umc.ttg.domain.review.entity.ReviewStatus;
 import com.umc.ttg.domain.review.exception.handler.ReviewHandler;
 import com.umc.ttg.domain.review.repository.ReviewRepository;
-import com.umc.ttg.domain.store.entity.Store;
+import com.umc.ttg.domain.store.entity.StoreEntity;
 import com.umc.ttg.domain.store.exception.handler.StoreHandler;
 import com.umc.ttg.domain.store.repository.StoreRepository;
 import com.umc.ttg.global.common.BaseResponseDto;
@@ -44,34 +44,34 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     @Transactional
     public BaseResponseDto<ReviewRegisterResponseDTO> save(Long storeId, ReviewRegisterRequestDTO reviewRegisterRequestDTO, String memberName) throws IOException, WriterException {
 
-        Store store = storeRepository.findById(storeId)
+        StoreEntity storeEntity = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ResponseCode.STORE_NOT_FOUND));
 
-        Member member = memberRepository.findByName(memberName)
+        MemberEntity memberEntity = memberRepository.findByName(memberName)
                 .orElseThrow(() -> new MemberHandler(ResponseCode.MEMBER_NOT_FOUND));
 
         // 리뷰가 이미 있으면 예외 처리
-        Optional<Review> foundReview = reviewRepository.findByStoreIdAndMemberId(storeId, member.getId());
+        Optional<ReviewEntity> foundReview = reviewRepository.findByStoreIdAndMemberId(storeId, memberEntity.getId());
         if (foundReview.isPresent()){
             throw new ReviewHandler(ResponseCode.REVIEW_ALREADY_FOUND);
         }
 
-        Review review = new Review(store, member, reviewRegisterRequestDTO);
-        review.setStatus(ReviewStatus.SUCCESS);
-        review.setApplyDate(LocalDate.now());
+        ReviewEntity reviewEntity = new ReviewEntity(storeEntity, memberEntity, reviewRegisterRequestDTO);
+        reviewEntity.setStatus(ReviewStatus.SUCCESS);
+        reviewEntity.setApplyDate(LocalDate.now());
 
         // DB에 저장
-        Review savedReview = reviewRepository.save(review);
+        ReviewEntity savedReviewEntity = reviewRepository.save(reviewEntity);
 
-        ReviewRegisterResponseDTO reviewRegisterResponseDTO = new ReviewRegisterResponseDTO(savedReview.getId());
+        ReviewRegisterResponseDTO reviewRegisterResponseDTO = new ReviewRegisterResponseDTO(savedReviewEntity.getId());
 
         // 리뷰 등록 시 쿠폰 생성
-        MultipartFile qrCode = QrCodeGenerator.generateQrCode(store);
+        MultipartFile qrCode = QrCodeGenerator.generateQrCode(storeEntity);
         String s3ImageLink = getS3ImageLink(qrCode);
-        couponRepository.save(Coupon.of(store, s3ImageLink, LocalDate.now(), LocalDate.now().plusMonths(1), member));
+        couponRepository.save(CouponEntity.of(storeEntity, s3ImageLink, LocalDate.now(), LocalDate.now().plusMonths(1), memberEntity));
 
-        store.updateReviewCount(); // store reviewCount +1
-        member.updateBenefitCount(); // member benefitCount +1
+        storeEntity.updateReviewCount(); // store reviewCount +1
+        memberEntity.updateBenefitCount(); // member benefitCount +1
 
         return BaseResponseDto.onSuccess(reviewRegisterResponseDTO, ResponseCode.OK);
     }

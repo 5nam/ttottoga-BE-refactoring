@@ -1,16 +1,16 @@
 package com.umc.ttg.domain.store.repository;
 
-import com.umc.ttg.domain.store.entity.Menu;
-import com.umc.ttg.domain.store.entity.Region;
-import com.umc.ttg.domain.store.entity.Store;
+import com.umc.ttg.domain.store.entity.MenuEntity;
+import com.umc.ttg.domain.store.entity.RegionEntity;
+import com.umc.ttg.domain.store.entity.StoreEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface StoreRepository extends JpaRepository<Store, Long> {
+public interface StoreRepository extends JpaRepository<StoreEntity, Long> {
 
-    List<Store> findByRegion(Region region);
-    List<Store> findByTitleContainingOrNameContaining(String keyword, String name);
-    List<Store> findByMenu(Menu menu);
+    List<StoreEntity> findByRegion(RegionEntity regionEntity);
+    List<StoreEntity> findByTitleContainingOrNameContaining(String keyword, String name);
+    List<StoreEntity> findByMenu(MenuEntity menuEntity);
 
 }

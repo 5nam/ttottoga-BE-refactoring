@@ -1,7 +1,7 @@
 package com.umc.ttg.domain.review.dto;
 
 import com.umc.ttg.domain.coupon.repository.CouponRepository;
-import com.umc.ttg.domain.review.entity.Review;
+import com.umc.ttg.domain.review.entity.ReviewEntity;
 import com.umc.ttg.domain.review.entity.ReviewStatus;
 import com.umc.ttg.domain.store.dto.MyPageStoreResponseDto;
 import com.umc.ttg.domain.store.dto.converter.StoreConverter;
@@ -22,16 +22,16 @@ public class MyPageReviewResponseDTO {
     private String reason;
     private MyPageStoreResponseDto storeDto;
 
-    public static MyPageReviewResponseDTO of(Long memberId, Review review, CouponRepository couponRepository) {
+    public static MyPageReviewResponseDTO of(Long memberId, ReviewEntity reviewEntity, CouponRepository couponRepository) {
         MyPageStoreResponseDto myPageStoreResponseDto =
-                StoreConverter.convertToMyStoreDto(memberId, review.getStore(), couponRepository);
+                StoreConverter.convertToMyStoreDto(memberId, reviewEntity.getStore(), couponRepository);
 
         return MyPageReviewResponseDTO.builder()
-                .reviewId(review.getId())
-                .reviewLink(review.getReviewLink())
-                .status(review.getStatus())
-                .applyDate(review.getApplyDate())
-                .reason(review.getReason())
+                .reviewId(reviewEntity.getId())
+                .reviewLink(reviewEntity.getReviewLink())
+                .status(reviewEntity.getStatus())
+                .applyDate(reviewEntity.getApplyDate())
+                .reason(reviewEntity.getReason())
                 .storeDto(myPageStoreResponseDto)
                 .build();
     }

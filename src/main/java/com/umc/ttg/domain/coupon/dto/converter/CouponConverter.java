@@ -1,23 +1,23 @@
 package com.umc.ttg.domain.coupon.dto.converter;
 
 import com.umc.ttg.domain.coupon.dto.MyPageCouponResponseDTO;
-import com.umc.ttg.domain.coupon.entity.Coupon;
+import com.umc.ttg.domain.coupon.entity.CouponEntity;
 
 public class CouponConverter {
 
-    public static MyPageCouponResponseDTO convertToMyCouponDto(Coupon coupon) {
-        if (coupon == null) {
+    public static MyPageCouponResponseDTO convertToMyCouponDto(CouponEntity couponEntity) {
+        if (couponEntity == null) {
             return null;
         }
 
         return MyPageCouponResponseDTO.builder()
-                .id(coupon.getId())
-                .content(coupon.getContent())
+                .id(couponEntity.getId())
+                .content(couponEntity.getContent())
                 .build();
     }
 
-    public static String convertToCouponUsage(Coupon coupon) {
+    public static String convertToCouponUsage(CouponEntity couponEntity) {
 
-        return coupon.getId() + "번 쿠폰 사용 완료";
+        return couponEntity.getId() + "번 쿠폰 사용 완료";
     }
 }
