@@ -1,6 +1,7 @@
 package com.umc.ttg.domain.store.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
@@ -17,4 +18,8 @@ public class RegionEntity {
 
     private Long upperId;
 
+    @Builder
+    public RegionEntity(String name) {
+        this.name = name;
+    }
 }

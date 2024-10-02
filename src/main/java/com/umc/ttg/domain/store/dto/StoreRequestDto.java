@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class StoreRequestDto {
 
     @NotNull @NotEmpty @NotBlank

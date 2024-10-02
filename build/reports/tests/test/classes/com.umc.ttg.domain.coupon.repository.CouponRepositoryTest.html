@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - CouponRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>CouponRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.umc.ttg.domain.coupon.repository.html">com.umc.ttg.domain.coupon.repository</a> &gt; CouponRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.331s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">CouponRepository_가_제대로_연결되었다()</td>
+<td class="success">0.331s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>14:24:11.900 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.coupon.repository.CouponRepositoryTest]: CouponRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:24:11.958 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.coupon.repository.CouponRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2024-10-02T14:24:12.078+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Starting CouponRepositoryTest using Java 17.0.12 with PID 84539 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
+2024-10-02T14:24:12.080+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
+2024-10-02T14:24:12.234+09:00  INFO 84539 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-02T14:24:12.265+09:00  INFO 84539 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 7 JPA repository interfaces.
+2024-10-02T14:24:12.285+09:00  INFO 84539 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-02T14:24:12.351+09:00  INFO 84539 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:aa6e4d03-a30b-4356-abb9-06c8bfa76a1f;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-02T14:24:12.479+09:00  INFO 84539 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-02T14:24:12.496+09:00  INFO 84539 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-02T14:24:12.506+09:00  INFO 84539 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-02T14:24:12.576+09:00  INFO 84539 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-02T14:24:12.589+09:00  WARN 84539 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-02T14:24:12.871+09:00  INFO 84539 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.MenuEntity (class must be instantiated by Interceptor)
+2024-10-02T14:24:12.877+09:00  INFO 84539 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.RegionEntity (class must be instantiated by Interceptor)
+2024-10-02T14:24:12.921+09:00  INFO 84539 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    drop table if exists coupon_entity cascade 
+Hibernate: 
+    drop table if exists heart_store_entity cascade 
+Hibernate: 
+    drop table if exists member_entity cascade 
+Hibernate: 
+    drop table if exists menu_entity cascade 
+Hibernate: 
+    drop table if exists region_entity cascade 
+Hibernate: 
+    drop table if exists review_entity cascade 
+Hibernate: 
+    drop table if exists store_entity cascade 
+Hibernate: 
+    create table coupon_entity (
+        end_date date not null,
+        start_date date not null,
+        status_yn char(1) default 'N' not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        member_id bigint not null,
+        modify_at timestamp(6),
+        store_id bigint not null,
+        name varchar(50) not null,
+        content varchar(100) not null,
+        image_url varchar(255),
+        qr_code varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table heart_store_entity (
+        id bigint generated by default as identity,
+        member_id bigint,
+        store_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table member_entity (
+        benefit_count integer not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        modify_at timestamp(6),
+        phone_num varchar(15),
+        nickname varchar(20) not null,
+        name varchar(100) not null,
+        password varchar(255) not null,
+        profile_image varchar(255),
+        role varchar(255) not null,
+        type varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table menu_entity (
+        id bigint generated by default as identity,
+        name varchar(20) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table region_entity (
+        id bigint generated by default as identity,
+        upper_id bigint,
+        name varchar(10) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table review_entity (
+        apply_date date not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        member_id bigint,
+        modify_at timestamp(6),
+        store_id bigint,
+        reason varchar(255),
+        review_link varchar(255) not null,
+        status varchar(255) not null check (status in ('SUBSCRIPTION','SCREENING','SUCCESS','FAIL')),
+        primary key (id)
+    )
+Hibernate: 
+    create table store_entity (
+        hot_yn char(1) default 'n' not null,
+        review_count integer not null,
+        review_span integer not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        menu_id bigint,
+        modify_at timestamp(6),
+        region_id bigint,
+        name varchar(50) not null,
+        title varchar(50) not null,
+        sub_title varchar(100) not null,
+        address varchar(255) not null,
+        image varchar(255),
+        place_info varchar(255),
+        sale_info varchar(255),
+        service_info varchar(255),
+        spon_info varchar(255),
+        use_info varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists coupon_entity 
+       add constraint FK6ddhxqlfsw4uxi1e9c2qtawp3 
+       foreign key (member_id) 
+       references member_entity
+Hibernate: 
+    alter table if exists coupon_entity 
+       add constraint FKkspwccdrrstk1524x5n2994st 
+       foreign key (store_id) 
+       references store_entity
+Hibernate: 
+    alter table if exists heart_store_entity 
+       add constraint FK925by01am659rfpnc4cbb4i2b 
+       foreign key (member_id) 
+       references member_entity
+Hibernate: 
+    alter table if exists heart_store_entity 
+       add constraint FKk5jm3bh0pgbvvbekhx6qrpfdg 
+       foreign key (store_id) 
+       references store_entity
+Hibernate: 
+    alter table if exists review_entity 
+       add constraint FK1v573h51jupdaafj16w2iot69 
+       foreign key (member_id) 
+       references member_entity
+Hibernate: 
+    alter table if exists review_entity 
+       add constraint FKhkfkpj8lh6482kr5nygn9xjdu 
+       foreign key (store_id) 
+       references store_entity
+Hibernate: 
+    alter table if exists store_entity 
+       add constraint FKd5o9p46b16mguuiax77i6vk2u 
+       foreign key (menu_id) 
+       references menu_entity
+Hibernate: 
+    alter table if exists store_entity 
+       add constraint FK4fmepewfgeanbv9im9go6hqna 
+       foreign key (region_id) 
+       references region_entity
+2024-10-02T14:24:12.947+09:00  INFO 84539 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-02T14:24:13.164+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Started CouponRepositoryTest in 1.181 seconds (process running for 1.594)
+Hibernate: 
+    insert 
+    into
+        member_entity
+        (benefit_count, created_at, modify_at, name, nickname, password, phone_num, profile_image, role, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        menu_entity
+        (name, id) 
+    values
+        (?, default)
+Hibernate: 
+    insert 
+    into
+        region_entity
+        (name, upper_id, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        store_entity
+        (address, created_at, image, menu_id, modify_at, name, place_info, region_id, review_count, review_span, sale_info, service_info, spon_info, sub_title, title, use_info, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        coupon_entity
+        (content, created_at, end_date, image_url, member_id, modify_at, name, qr_code, start_date, status_yn, store_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 2. 오후 2:24:13</p>
+</div>
+</div>
+</body>
+</html>

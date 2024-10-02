@@ -276,16 +276,16 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private MemberEntity saveTestMember() {
-
-        return memberRepository.save(MemberEntity.builder()
-                .name("test")
-                .nickname("ddd")
-                .profileImage("ddd")
-                .phoneNum("010")
-                .benefitCount(0)
-                .build());
-
-    }
+//    private MemberEntity saveTestMember() {
+//
+//        return memberRepository.save(MemberEntity.builder()
+//                .name("test")
+//                .nickname("ddd")
+//                .profileImage("ddd")
+//                .phoneNum("010")
+//                .benefitCount(0)
+//                .build());
+//
+//    }
 
 }

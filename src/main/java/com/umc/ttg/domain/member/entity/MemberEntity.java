@@ -39,15 +39,16 @@ public class MemberEntity extends Time {
     @Column(nullable = false)
     private String role;
 
-    @Builder
-    public MemberEntity(String name, String nickname, String profileImage, String phoneNum, int benefitCount) {
-        this.name = name;
-        this.nickname = nickname;
-        this.profileImage = profileImage;
-        this.phoneNum = phoneNum;
-        this.benefitCount = benefitCount;
-    }
+//    @Builder
+//    public MemberEntity(String name, String nickname, String profileImage, String phoneNum, int benefitCount) {
+//        this.name = name;
+//        this.nickname = nickname;
+//        this.profileImage = profileImage;
+//        this.phoneNum = phoneNum;
+//        this.benefitCount = benefitCount;
+//    }
 
+    @Builder
     public MemberEntity(String userId, String nickname, String profileImage, String type) {
         this.name = userId;
         this.nickname = nickname;

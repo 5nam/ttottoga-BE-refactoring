@@ -1,6 +1,7 @@
 package com.umc.ttg.domain.store.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
@@ -15,4 +16,8 @@ public class MenuEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Builder
+    public MenuEntity(String name) {
+        this.name = name;
+    }
 }
