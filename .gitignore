@@ -85,3 +85,10 @@ fabric.properties
 *.iml
 out
 gen
+
+# properties 제거
+application-localfile.properties
+application-s3.properties
+application-oauth.properties
+application-rds.properties
+application-h2.properties
