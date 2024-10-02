@@ -1,113 +1,79 @@
 package com.umc.ttg.domain.coupon.repository;
 
 import com.umc.ttg.domain.coupon.entity.CouponEntity;
-import com.umc.ttg.domain.member.entity.MemberEntity;
-import com.umc.ttg.domain.member.repository.MemberRepository;
-import com.umc.ttg.domain.store.dto.StoreRequestDto;
-import com.umc.ttg.domain.store.entity.MenuEntity;
-import com.umc.ttg.domain.store.entity.RegionEntity;
-import com.umc.ttg.domain.store.entity.StoreEntity;
-import com.umc.ttg.domain.store.repository.MenuRepository;
-import com.umc.ttg.domain.store.repository.RegionRepository;
-import com.umc.ttg.domain.store.repository.StoreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
-import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest(showSql = true)
+@Sql("/sql/coupon-repository-test-data.sql")
 class CouponRepositoryTest {
 
     @Autowired
     private CouponRepository couponRepository;
-    @Autowired
-    private MenuRepository menuRepository;
-    @Autowired
-    private StoreRepository storeRepository;
-    @Autowired
-    private RegionRepository regionRepository;
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @Test
-    void CouponRepository_가_제대로_연결되었다() {
-        //given
-        MemberEntity memberEntity = MemberEntity.builder()
-                .userId("test")
-                .nickname("nickname")
-                .profileImage("profileImage")
-                .type("type")
-                .build();
-
-        memberRepository.save(memberEntity);
-
-        StoreRequestDto storeRequestDto = StoreRequestDto.builder()
-                .title("title")
-                .subTitle("subTitle")
-                .useInfo("useInfo")
-                .saleInfo("saleInfo")
-                .placeInfo("placeInfo")
-                .sponInfo("sponInfo")
-                .serviceInfo("serviceInfo")
-                .reviewSpan(5)
-                .address("address")
-                .name("name").build();
-
-        MenuEntity menu = MenuEntity.builder().name("menuName").build();
-        menuRepository.save(menu);
-        RegionEntity region = RegionEntity.builder().name("regionName").build();
-        regionRepository.save(region);
-
-        StoreEntity storeEntity = StoreEntity.builder()
-                .storeRequestDto(storeRequestDto)
-                .storeImage("storeImage")
-                .menu(menu)
-                .region(region)
-                .build();
-        storeRepository.save(storeEntity);
-
-        CouponEntity couponEntity = CouponEntity.builder()
-                .name("name")
-                .content("content")
-                .qrCode("qrCode")
-                .imageUrl("imageUrl")
-                .startDate(LocalDate.now())
-                .endDate(LocalDate.now())
-                .statusYn('y')
-                .member(memberEntity)
-                .store(storeEntity).build();
-
-        //when
-        CouponEntity result = couponRepository.save(couponEntity);
-
-        //then
-        assertThat(result.getId()).isNotNull();
-    }
 
     @Test
     void findAllByMemberId_로_쿠폰_데이터를_찾아올_수_있다() {
         //given
 
         //when
+        List<CouponEntity> result = couponRepository.findAllByMemberId(1L);
+
         //then
+        assertThat(result.size() > 0).isTrue();
     }
 
     @Test
-    void findByStoreId() {
+    void findAllByMemberId_로_쿠폰_데이터를_찾아올_때_값이_없으면_빈_리스트를_반환한다() {
+        //given
+
+        //when
+        List<CouponEntity> result = couponRepository.findAllByMemberId(2L);
+
+        //then
+        assertThat(result.isEmpty()).isTrue();
     }
 
     @Test
-    void findByIdAndMemberId() {
+    void findByIdAndMemberId_로_쿠폰_데이터를_찾아올_수_있다() {
+        //given
+        //when
+        Optional<CouponEntity> result = couponRepository.findByIdAndMemberId(1L, 1L);
+        //then
+        assertThat(result.isPresent()).isTrue();
     }
 
     @Test
-    void findByMemberIdAndStoreId() {
+    void findByIdAndMemberId_로_쿠폰_데이터를_찾아올_때_결과가_없으면_Optional_emtpy_를_내려준다() {
+        //given
+        //when
+        Optional<CouponEntity> result = couponRepository.findByIdAndMemberId(2L, 1L);
+        //then
+        assertThat(result.isEmpty()).isTrue();
     }
 
     @Test
-    void findAllByMemberIdAndStoreId() {
+    void findAllByMemberIdAndStoreId_로_쿠폰_데이터를_찾아올_수_있다() {
+        //given
+        //when
+        List<CouponEntity> result = couponRepository.findAllByMemberIdAndStoreId(1L, 1L);
+        //then
+        assertThat(result.size() > 0).isTrue();
     }
+
+    @Test
+    void findAllByMemberIdAndStoreId_는_데이터가_없으면_빈_리스트를_내려준다() {
+        //given
+        //when
+        List<CouponEntity> result = couponRepository.findAllByMemberIdAndStoreId(2L, 2L);
+        //then
+        assertThat(result.isEmpty()).isTrue();
+    }
+
 }

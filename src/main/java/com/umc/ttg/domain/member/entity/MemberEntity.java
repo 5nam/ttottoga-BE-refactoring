@@ -7,6 +7,7 @@ import lombok.*;
 @Getter @Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "MEMBER")
 public class MemberEntity extends Time {
 
     @Id

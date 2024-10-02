@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert @DynamicUpdate
 @Getter @Setter
 @Entity @Builder
+@Table(name = "HEART_STORE")
 public class HeartStoreEntity {
 
     @Id

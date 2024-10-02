@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "COUPON")
 public class CouponEntity extends Time {
 
     @Id

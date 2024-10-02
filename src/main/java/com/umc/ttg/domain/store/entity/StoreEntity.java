@@ -13,6 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert @DynamicUpdate
 @Getter
 @Entity
+@Table(name = "STORE")
 public class StoreEntity extends Time {
 
     @Id

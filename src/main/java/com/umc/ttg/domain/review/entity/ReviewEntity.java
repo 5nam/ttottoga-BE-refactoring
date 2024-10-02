@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @DynamicInsert @DynamicUpdate
 @Getter @Setter
 @Entity
+@Table(name = "REVIEW")
 public class ReviewEntity extends Time {
 
     @Id

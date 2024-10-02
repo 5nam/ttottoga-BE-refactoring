@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-02T05:24:13" hostname="onam-uiui-MacBookAir.local" time="0.331">
+<testsuite name="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-10-02T07:19:36" hostname="onam-uiui-MacBookAir.local" time="0.365">
   <properties/>
-  <testcase name="CouponRepository_가_제대로_연결되었다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.331"/>
-  <system-out><![CDATA[14:24:11.900 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.coupon.repository.CouponRepositoryTest]: CouponRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:24:11.958 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.coupon.repository.CouponRepositoryTest
+  <testcase name="findAllByMemberIdAndStoreId_는_데이터가_없으면_빈_리스트를_내려준다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.325"/>
+  <testcase name="findAllByMemberId_로_쿠폰_데이터를_찾아올_수_있다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.011"/>
+  <testcase name="findAllByMemberId_로_쿠폰_데이터를_찾아올_때_값이_없으면_빈_리스트를_반환한다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.007"/>
+  <testcase name="findByIdAndMemberId_로_쿠폰_데이터를_찾아올_수_있다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.008"/>
+  <testcase name="findAllByMemberIdAndStoreId_로_쿠폰_데이터를_찾아올_수_있다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.006"/>
+  <testcase name="findByIdAndMemberId_로_쿠폰_데이터를_찾아올_때_결과가_없으면_Optional_emtpy_를_내려준다()" classname="com.umc.ttg.domain.coupon.repository.CouponRepositoryTest" time="0.005"/>
+  <system-out><![CDATA[16:19:35.199 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.coupon.repository.CouponRepositoryTest]: CouponRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:19:35.256 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.coupon.repository.CouponRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,36 +18,35 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.1)
 
-2024-10-02T14:24:12.078+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Starting CouponRepositoryTest using Java 17.0.12 with PID 84539 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
-2024-10-02T14:24:12.080+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : The following 2 profiles are active: "h2", "localfile"
-2024-10-02T14:24:12.234+09:00  INFO 84539 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-02T14:24:12.265+09:00  INFO 84539 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 7 JPA repository interfaces.
-2024-10-02T14:24:12.285+09:00  INFO 84539 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-10-02T14:24:12.351+09:00  INFO 84539 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:aa6e4d03-a30b-4356-abb9-06c8bfa76a1f;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-10-02T14:24:12.479+09:00  INFO 84539 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-02T14:24:12.496+09:00  INFO 84539 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-10-02T14:24:12.506+09:00  INFO 84539 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-02T14:24:12.576+09:00  INFO 84539 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-02T14:24:12.589+09:00  WARN 84539 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-02T14:24:12.871+09:00  INFO 84539 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.MenuEntity (class must be instantiated by Interceptor)
-2024-10-02T14:24:12.877+09:00  INFO 84539 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.RegionEntity (class must be instantiated by Interceptor)
-2024-10-02T14:24:12.921+09:00  INFO 84539 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-02T16:19:35.369+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Starting CouponRepositoryTest using Java 17.0.12 with PID 88650 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
+2024-10-02T16:19:35.370+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : The following 2 profiles are active: "h2", "localfile"
+2024-10-02T16:19:35.504+09:00  INFO 88650 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-02T16:19:35.531+09:00  INFO 88650 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
+2024-10-02T16:19:35.550+09:00  INFO 88650 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-02T16:19:35.596+09:00  INFO 88650 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:75799f47-07c4-4e5d-8f0e-0dbffce60457;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-02T16:19:35.690+09:00  INFO 88650 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-02T16:19:35.705+09:00  INFO 88650 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-02T16:19:35.715+09:00  INFO 88650 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-02T16:19:35.786+09:00  INFO 88650 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-02T16:19:35.800+09:00  WARN 88650 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-02T16:19:36.074+09:00  INFO 88650 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.RegionEntity (class must be instantiated by Interceptor)
+2024-10-02T16:19:36.120+09:00  INFO 88650 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
-    drop table if exists coupon_entity cascade 
+    drop table if exists coupon cascade 
 Hibernate: 
-    drop table if exists heart_store_entity cascade 
+    drop table if exists heart_store cascade 
 Hibernate: 
-    drop table if exists member_entity cascade 
+    drop table if exists member cascade 
 Hibernate: 
-    drop table if exists menu_entity cascade 
+    drop table if exists menu cascade 
 Hibernate: 
-    drop table if exists region_entity cascade 
+    drop table if exists region cascade 
 Hibernate: 
-    drop table if exists review_entity cascade 
+    drop table if exists review cascade 
 Hibernate: 
-    drop table if exists store_entity cascade 
+    drop table if exists store cascade 
 Hibernate: 
-    create table coupon_entity (
+    create table coupon (
         end_date date not null,
         start_date date not null,
         status_yn char(1) default 'N' not null,
@@ -58,14 +62,14 @@ Hibernate:
         primary key (id)
     )
 Hibernate: 
-    create table heart_store_entity (
+    create table heart_store (
         id bigint generated by default as identity,
         member_id bigint,
         store_id bigint,
         primary key (id)
     )
 Hibernate: 
-    create table member_entity (
+    create table member (
         benefit_count integer not null,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
         id bigint generated by default as identity,
@@ -80,20 +84,20 @@ Hibernate:
         primary key (id)
     )
 Hibernate: 
-    create table menu_entity (
+    create table menu (
         id bigint generated by default as identity,
         name varchar(20) not null,
         primary key (id)
     )
 Hibernate: 
-    create table region_entity (
+    create table region (
         id bigint generated by default as identity,
         upper_id bigint,
         name varchar(10) not null,
         primary key (id)
     )
 Hibernate: 
-    create table review_entity (
+    create table review (
         apply_date date not null,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
         id bigint generated by default as identity,
@@ -106,7 +110,7 @@ Hibernate:
         primary key (id)
     )
 Hibernate: 
-    create table store_entity (
+    create table store (
         hot_yn char(1) default 'n' not null,
         review_count integer not null,
         review_span integer not null,
@@ -128,82 +132,183 @@ Hibernate:
         primary key (id)
     )
 Hibernate: 
-    alter table if exists coupon_entity 
-       add constraint FK6ddhxqlfsw4uxi1e9c2qtawp3 
+    alter table if exists coupon 
+       add constraint FK97ly69kp7juvoienofq00qaph 
        foreign key (member_id) 
-       references member_entity
+       references member
 Hibernate: 
-    alter table if exists coupon_entity 
-       add constraint FKkspwccdrrstk1524x5n2994st 
+    alter table if exists coupon 
+       add constraint FKs7yl3mm1m0o7fmn6et7guwo89 
        foreign key (store_id) 
-       references store_entity
+       references store
 Hibernate: 
-    alter table if exists heart_store_entity 
-       add constraint FK925by01am659rfpnc4cbb4i2b 
+    alter table if exists heart_store 
+       add constraint FKl52t080k9nit0j3jofrgexmjd 
        foreign key (member_id) 
-       references member_entity
+       references member
 Hibernate: 
-    alter table if exists heart_store_entity 
-       add constraint FKk5jm3bh0pgbvvbekhx6qrpfdg 
+    alter table if exists heart_store 
+       add constraint FKq376dt536pg6sdanaxjidaons 
        foreign key (store_id) 
-       references store_entity
+       references store
 Hibernate: 
-    alter table if exists review_entity 
-       add constraint FK1v573h51jupdaafj16w2iot69 
+    alter table if exists review 
+       add constraint FKk0ccx5i4ci2wd70vegug074w1 
        foreign key (member_id) 
-       references member_entity
+       references member
 Hibernate: 
-    alter table if exists review_entity 
-       add constraint FKhkfkpj8lh6482kr5nygn9xjdu 
+    alter table if exists review 
+       add constraint FK74d12ba8sxxu9vpnc59b43y30 
        foreign key (store_id) 
-       references store_entity
+       references store
 Hibernate: 
-    alter table if exists store_entity 
-       add constraint FKd5o9p46b16mguuiax77i6vk2u 
+    alter table if exists store 
+       add constraint FKf166ddwi0pngr3lwrkskhu9au 
        foreign key (menu_id) 
-       references menu_entity
+       references menu
 Hibernate: 
-    alter table if exists store_entity 
-       add constraint FK4fmepewfgeanbv9im9go6hqna 
+    alter table if exists store 
+       add constraint FKiecbc1b9m21semcf714lasyi5 
        foreign key (region_id) 
-       references region_entity
-2024-10-02T14:24:12.947+09:00  INFO 84539 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-02T14:24:13.164+09:00  INFO 84539 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Started CouponRepositoryTest in 1.181 seconds (process running for 1.594)
+       references region
+2024-10-02T16:19:36.146+09:00  INFO 88650 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-02T16:19:36.355+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Started CouponRepositoryTest in 1.077 seconds (process running for 1.479)
 Hibernate: 
-    insert 
-    into
-        member_entity
-        (benefit_count, created_at, modify_at, name, nickname, password, phone_num, profile_image, role, type, id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    left join
+        store s1_0 
+            on s1_0.id=ce1_0.store_id 
+    where
+        m1_0.id=? 
+        and s1_0.id=?
 Hibernate: 
-    insert 
-    into
-        menu_entity
-        (name, id) 
-    values
-        (?, default)
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    where
+        m1_0.id=?
 Hibernate: 
-    insert 
-    into
-        region_entity
-        (name, upper_id, id) 
-    values
-        (?, ?, default)
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    where
+        m1_0.id=?
 Hibernate: 
-    insert 
-    into
-        store_entity
-        (address, created_at, image, menu_id, modify_at, name, place_info, region_id, review_count, review_span, sale_info, service_info, spon_info, sub_title, title, use_info, id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    where
+        ce1_0.id=? 
+        and m1_0.id=?
 Hibernate: 
-    insert 
-    into
-        coupon_entity
-        (content, created_at, end_date, image_url, member_id, modify_at, name, qr_code, start_date, status_yn, store_id, id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    left join
+        store s1_0 
+            on s1_0.id=ce1_0.store_id 
+    where
+        m1_0.id=? 
+        and s1_0.id=?
+Hibernate: 
+    select
+        ce1_0.id,
+        ce1_0.content,
+        ce1_0.created_at,
+        ce1_0.end_date,
+        ce1_0.image_url,
+        ce1_0.member_id,
+        ce1_0.modify_at,
+        ce1_0.name,
+        ce1_0.qr_code,
+        ce1_0.start_date,
+        ce1_0.status_yn,
+        ce1_0.store_id 
+    from
+        coupon ce1_0 
+    left join
+        member m1_0 
+            on m1_0.id=ce1_0.member_id 
+    where
+        ce1_0.id=? 
+        and m1_0.id=?
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
