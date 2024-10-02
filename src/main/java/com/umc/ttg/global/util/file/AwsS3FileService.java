@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class AwsS3FileService implements FileService {
 
