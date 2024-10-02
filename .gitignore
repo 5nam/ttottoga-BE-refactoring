@@ -87,8 +87,8 @@ out
 gen
 
 # properties 제거
-application-localfile.properties
-application-s3.properties
-application-oauth.properties
-application-rds.properties
-application-h2.properties
+resources/application-localfile.properties
+resources/application-s3.properties
+resources/application-oauth.properties
+resources/application-rds.properties
+resources/application-h2.properties
