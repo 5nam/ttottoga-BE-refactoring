@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 @Table(name = "MENU")
 public class MenuEntity {
 
@@ -18,9 +18,4 @@ public class MenuEntity {
 
     @Column(nullable = false, length = 20)
     private String name;
-
-    @Builder
-    public MenuEntity(String name) {
-        this.name = name;
-    }
 }

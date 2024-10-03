@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.362s</div>
+<div class="counter">0.349s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">findAllByMemberIdAndStoreId_는_데이터가_없으면_빈_리스트를_내려준다()</td>
-<td class="success">0.325s</td>
+<td class="success">0.311s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td class="success">findAllByMemberId_로_쿠폰_데이터를_찾아올_때_값이_없으면_빈_리스트를_반환한다()</td>
-<td class="success">0.007s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -99,12 +99,12 @@
 </tr>
 <tr>
 <td class="success">findByIdAndMemberId_로_쿠폰_데이터를_찾아올_때_결과가_없으면_Optional_emtpy_를_내려준다()</td>
-<td class="success">0.005s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">findByIdAndMemberId_로_쿠폰_데이터를_찾아올_수_있다()</td>
-<td class="success">0.008s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -112,8 +112,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:19:35.199 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.coupon.repository.CouponRepositoryTest]: CouponRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:19:35.256 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.coupon.repository.CouponRepositoryTest
+<pre>13:51:38.260 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.coupon.repository.CouponRepositoryTest]: CouponRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:51:38.316 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.coupon.repository.CouponRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -123,19 +123,18 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.1)
 
-2024-10-02T16:19:35.369+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Starting CouponRepositoryTest using Java 17.0.12 with PID 88650 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
-2024-10-02T16:19:35.370+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
-2024-10-02T16:19:35.504+09:00  INFO 88650 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-02T16:19:35.531+09:00  INFO 88650 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
-2024-10-02T16:19:35.550+09:00  INFO 88650 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-10-02T16:19:35.596+09:00  INFO 88650 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:75799f47-07c4-4e5d-8f0e-0dbffce60457;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-10-02T16:19:35.690+09:00  INFO 88650 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-02T16:19:35.705+09:00  INFO 88650 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-10-02T16:19:35.715+09:00  INFO 88650 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-02T16:19:35.786+09:00  INFO 88650 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-02T16:19:35.800+09:00  WARN 88650 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-02T16:19:36.074+09:00  INFO 88650 --- [    Test worker] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: com.umc.ttg.domain.store.entity.RegionEntity (class must be instantiated by Interceptor)
-2024-10-02T16:19:36.120+09:00  INFO 88650 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-03T13:51:38.434+09:00  INFO 45404 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Starting CouponRepositoryTest using Java 17.0.12 with PID 45404 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
+2024-10-03T13:51:38.436+09:00  INFO 45404 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
+2024-10-03T13:51:38.587+09:00  INFO 45404 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-03T13:51:38.620+09:00  INFO 45404 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 7 JPA repository interfaces.
+2024-10-03T13:51:38.642+09:00  INFO 45404 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-03T13:51:38.694+09:00  INFO 45404 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:ce8765de-d76a-451d-8ba0-f2aceda42543;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-03T13:51:38.796+09:00  INFO 45404 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-03T13:51:38.813+09:00  INFO 45404 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-03T13:51:38.823+09:00  INFO 45404 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-03T13:51:38.896+09:00  INFO 45404 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-03T13:51:38.912+09:00  WARN 45404 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-03T13:51:39.247+09:00  INFO 45404 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     drop table if exists coupon cascade 
 Hibernate: 
@@ -276,8 +275,8 @@ Hibernate:
        add constraint FKiecbc1b9m21semcf714lasyi5 
        foreign key (region_id) 
        references region
-2024-10-02T16:19:36.146+09:00  INFO 88650 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-02T16:19:36.355+09:00  INFO 88650 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Started CouponRepositoryTest in 1.077 seconds (process running for 1.479)
+2024-10-03T13:51:39.276+09:00  INFO 45404 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-03T13:51:39.498+09:00  INFO 45404 --- [    Test worker] c.u.t.d.c.r.CouponRepositoryTest         : Started CouponRepositoryTest in 1.158 seconds (process running for 1.563)
 Hibernate: 
     select
         ce1_0.id,
@@ -425,7 +424,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 2. 오후 4:19:36</p>
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 3. 오후 1:51:39</p>
 </div>
 </div>
 </body>

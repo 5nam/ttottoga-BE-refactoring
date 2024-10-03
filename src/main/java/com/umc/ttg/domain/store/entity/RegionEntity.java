@@ -3,9 +3,11 @@ package com.umc.ttg.domain.store.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+//@NoArgsConstructor
 @Table(name = "REGION")
 public class RegionEntity {
 
@@ -18,9 +20,4 @@ public class RegionEntity {
     private String name;
 
     private Long upperId;
-
-    @Builder
-    public RegionEntity(String name) {
-        this.name = name;
-    }
 }
