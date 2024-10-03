@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - HeartStoreRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>HeartStoreRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.umc.ttg.domain.member.repository.html">com.umc.ttg.domain.member.repository</a> &gt; HeartStoreRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.343s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">findByMemberAndStore_는_관심상점_데이터가_없을_경우_Optional_Empty_를_반환한다()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByMemberAndStore_로_관심_상점_데이터를_가져올_수_있다()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByMember_는_데이터가_없으면_빈_리스트를_반환한다()</td>
+<td class="success">0.317s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByMember_로_관심상점_리스트_데이터를_받아올_수_있다()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>14:15:17.256 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.member.repository.HeartStoreRepositoryTest]: HeartStoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:15:17.311 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.member.repository.HeartStoreRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2024-10-03T14:15:17.421+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : Starting HeartStoreRepositoryTest using Java 17.0.12 with PID 46748 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
+2024-10-03T14:15:17.422+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
+2024-10-03T14:15:17.547+09:00  INFO 46748 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-03T14:15:17.576+09:00  INFO 46748 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
+2024-10-03T14:15:17.596+09:00  INFO 46748 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-03T14:15:17.639+09:00  INFO 46748 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:511e5a2f-5cb8-45d1-88df-2c446f197b7e;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-03T14:15:17.730+09:00  INFO 46748 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-03T14:15:17.744+09:00  INFO 46748 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-03T14:15:17.753+09:00  INFO 46748 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-03T14:15:17.822+09:00  INFO 46748 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-03T14:15:17.835+09:00  WARN 46748 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-03T14:15:18.152+09:00  INFO 46748 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    drop table if exists coupon cascade 
+Hibernate: 
+    drop table if exists heart_store cascade 
+Hibernate: 
+    drop table if exists member cascade 
+Hibernate: 
+    drop table if exists menu cascade 
+Hibernate: 
+    drop table if exists region cascade 
+Hibernate: 
+    drop table if exists review cascade 
+Hibernate: 
+    drop table if exists store cascade 
+Hibernate: 
+    create table coupon (
+        end_date date not null,
+        start_date date not null,
+        status_yn char(1) default 'N' not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        member_id bigint not null,
+        modify_at timestamp(6),
+        store_id bigint not null,
+        name varchar(50) not null,
+        content varchar(100) not null,
+        image_url varchar(255),
+        qr_code varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table heart_store (
+        id bigint generated by default as identity,
+        member_id bigint,
+        store_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table member (
+        benefit_count integer not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        modify_at timestamp(6),
+        phone_num varchar(15),
+        nickname varchar(20) not null,
+        name varchar(100) not null,
+        password varchar(255) not null,
+        profile_image varchar(255),
+        role varchar(255) not null,
+        type varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table menu (
+        id bigint generated by default as identity,
+        name varchar(20) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table region (
+        id bigint generated by default as identity,
+        upper_id bigint,
+        name varchar(10) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table review (
+        apply_date date not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        member_id bigint,
+        modify_at timestamp(6),
+        store_id bigint,
+        reason varchar(255),
+        review_link varchar(255) not null,
+        status varchar(255) not null check (status in ('SUBSCRIPTION','SCREENING','SUCCESS','FAIL')),
+        primary key (id)
+    )
+Hibernate: 
+    create table store (
+        hot_yn char(1) default 'n' not null,
+        review_count integer not null,
+        review_span integer not null,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+        id bigint generated by default as identity,
+        menu_id bigint,
+        modify_at timestamp(6),
+        region_id bigint,
+        name varchar(50) not null,
+        title varchar(50) not null,
+        sub_title varchar(100) not null,
+        address varchar(255) not null,
+        image varchar(255),
+        place_info varchar(255),
+        sale_info varchar(255),
+        service_info varchar(255),
+        spon_info varchar(255),
+        use_info varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists coupon 
+       add constraint FK97ly69kp7juvoienofq00qaph 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists coupon 
+       add constraint FKs7yl3mm1m0o7fmn6et7guwo89 
+       foreign key (store_id) 
+       references store
+Hibernate: 
+    alter table if exists heart_store 
+       add constraint FKl52t080k9nit0j3jofrgexmjd 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists heart_store 
+       add constraint FKq376dt536pg6sdanaxjidaons 
+       foreign key (store_id) 
+       references store
+Hibernate: 
+    alter table if exists review 
+       add constraint FKk0ccx5i4ci2wd70vegug074w1 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists review 
+       add constraint FK74d12ba8sxxu9vpnc59b43y30 
+       foreign key (store_id) 
+       references store
+Hibernate: 
+    alter table if exists store 
+       add constraint FKf166ddwi0pngr3lwrkskhu9au 
+       foreign key (menu_id) 
+       references menu
+Hibernate: 
+    alter table if exists store 
+       add constraint FKiecbc1b9m21semcf714lasyi5 
+       foreign key (region_id) 
+       references region
+2024-10-03T14:15:18.180+09:00  INFO 46748 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-03T14:15:18.399+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : Started HeartStoreRepositoryTest in 1.067 seconds (process running for 1.455)
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.id=?
+Hibernate: 
+    select
+        hse1_0.id,
+        hse1_0.member_id,
+        hse1_0.store_id 
+    from
+        heart_store hse1_0 
+    where
+        hse1_0.member_id=?
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.id=?
+Hibernate: 
+    select
+        se1_0.id,
+        se1_0.address,
+        se1_0.created_at,
+        se1_0.hot_yn,
+        se1_0.image,
+        se1_0.menu_id,
+        se1_0.modify_at,
+        se1_0.name,
+        se1_0.place_info,
+        se1_0.region_id,
+        se1_0.review_count,
+        se1_0.review_span,
+        se1_0.sale_info,
+        se1_0.service_info,
+        se1_0.spon_info,
+        se1_0.sub_title,
+        se1_0.title,
+        se1_0.use_info 
+    from
+        store se1_0 
+    where
+        se1_0.id=?
+Hibernate: 
+    select
+        hse1_0.id,
+        hse1_0.member_id,
+        hse1_0.store_id 
+    from
+        heart_store hse1_0 
+    where
+        hse1_0.member_id=? 
+        and hse1_0.store_id=?
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.id=?
+Hibernate: 
+    select
+        hse1_0.id,
+        hse1_0.member_id,
+        hse1_0.store_id 
+    from
+        heart_store hse1_0 
+    where
+        hse1_0.member_id=?
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.id=?
+Hibernate: 
+    select
+        se1_0.id,
+        se1_0.address,
+        se1_0.created_at,
+        se1_0.hot_yn,
+        se1_0.image,
+        se1_0.menu_id,
+        se1_0.modify_at,
+        se1_0.name,
+        se1_0.place_info,
+        se1_0.region_id,
+        se1_0.review_count,
+        se1_0.review_span,
+        se1_0.sale_info,
+        se1_0.service_info,
+        se1_0.spon_info,
+        se1_0.sub_title,
+        se1_0.title,
+        se1_0.use_info 
+    from
+        store se1_0 
+    where
+        se1_0.id=?
+Hibernate: 
+    select
+        hse1_0.id,
+        hse1_0.member_id,
+        hse1_0.store_id 
+    from
+        heart_store hse1_0 
+    where
+        hse1_0.member_id=? 
+        and hse1_0.store_id=?
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 3. 오후 2:15:18</p>
+</div>
+</div>
+</body>
+</html>
