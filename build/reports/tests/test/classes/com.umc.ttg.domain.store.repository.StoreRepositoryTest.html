@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - HeartStoreRepositoryTest</title>
+<title>Test results - StoreRepositoryTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>HeartStoreRepositoryTest</h1>
+<h1>StoreRepositoryTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/com.umc.ttg.domain.member.repository.html">com.umc.ttg.domain.member.repository</a> &gt; HeartStoreRepositoryTest</div>
+<a href="../packages/com.umc.ttg.domain.store.repository.html">com.umc.ttg.domain.store.repository</a> &gt; StoreRepositoryTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">4</div>
+<div class="counter">6</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.343s</div>
+<div class="counter">0.374s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,23 +78,33 @@
 </tr>
 </thead>
 <tr>
-<td class="success">findByMemberAndStore_는_관심상점_데이터가_없을_경우_Optional_Empty_를_반환한다()</td>
-<td class="success">0.010s</td>
+<td class="success">findByMenu_는_알맞은_상점_데이터가_없으면_빈_리스트를_반환한다()</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">findByMemberAndStore_로_관심_상점_데이터를_가져올_수_있다()</td>
+<td class="success">findByMenu_로_상점_데이터를_찾을_수_있다()</td>
+<td class="success">0.339s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByRegion_는_지역에_해당하는_데이터가_없으면_빈_리스트를_반환한다()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByRegion_로_지역별_상점_데이터를_가져올_수_있다()</td>
 <td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">findByMember_는_데이터가_없으면_빈_리스트를_반환한다()</td>
-<td class="success">0.317s</td>
+<td class="success">findByTitleContainingOrNameContaining_는_띄어쓰기_상관없이_검색을_통해_상점을_똑같이_찾을_수_있다()</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">findByMember_로_관심상점_리스트_데이터를_받아올_수_있다()</td>
-<td class="success">0.009s</td>
+<td class="success">findByTitleContainingOrNameContaining_로_제목과_이름이_포함된_상점을_찾을_수_있다()</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -102,8 +112,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>14:15:17.256 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.member.repository.HeartStoreRepositoryTest]: HeartStoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:15:17.311 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.member.repository.HeartStoreRepositoryTest
+<pre>19:30:39.409 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.umc.ttg.domain.store.repository.StoreRepositoryTest]: StoreRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:30:39.463 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.store.repository.StoreRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -113,18 +123,18 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.1)
 
-2024-10-03T14:15:17.421+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : Starting HeartStoreRepositoryTest using Java 17.0.12 with PID 46748 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
-2024-10-03T14:15:17.422+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
-2024-10-03T14:15:17.547+09:00  INFO 46748 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-03T14:15:17.576+09:00  INFO 46748 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
-2024-10-03T14:15:17.596+09:00  INFO 46748 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-10-03T14:15:17.639+09:00  INFO 46748 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:511e5a2f-5cb8-45d1-88df-2c446f197b7e;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-10-03T14:15:17.730+09:00  INFO 46748 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-03T14:15:17.744+09:00  INFO 46748 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-10-03T14:15:17.753+09:00  INFO 46748 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-03T14:15:17.822+09:00  INFO 46748 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-03T14:15:17.835+09:00  WARN 46748 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-03T14:15:18.152+09:00  INFO 46748 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-05T19:30:39.582+09:00  INFO 29618 --- [    Test worker] c.u.t.d.s.r.StoreRepositoryTest          : Starting StoreRepositoryTest using Java 17.0.12 with PID 29618 (started by onam-ui in /Users/onam-ui/Desktop/Project/2024/ttottoga-BE-refactoring)
+2024-10-05T19:30:39.584+09:00  INFO 29618 --- [    Test worker] c.u.t.d.s.r.StoreRepositoryTest          : The following 2 profiles are active: &quot;h2&quot;, &quot;localfile&quot;
+2024-10-05T19:30:39.738+09:00  INFO 29618 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-05T19:30:39.767+09:00  INFO 29618 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 7 JPA repository interfaces.
+2024-10-05T19:30:39.788+09:00  INFO 29618 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-05T19:30:39.838+09:00  INFO 29618 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:64dbbc81-526a-4031-90c1-310c432f7466;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-05T19:30:39.966+09:00  INFO 29618 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-05T19:30:40.003+09:00  INFO 29618 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-05T19:30:40.013+09:00  INFO 29618 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-05T19:30:40.085+09:00  INFO 29618 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-05T19:30:40.101+09:00  WARN 29618 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-05T19:30:40.435+09:00  INFO 29618 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     drop table if exists coupon cascade 
 Hibernate: 
@@ -265,49 +275,14 @@ Hibernate:
        add constraint FKiecbc1b9m21semcf714lasyi5 
        foreign key (region_id) 
        references region
-2024-10-03T14:15:18.180+09:00  INFO 46748 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-03T14:15:18.399+09:00  INFO 46748 --- [    Test worker] c.u.t.d.m.r.HeartStoreRepositoryTest     : Started HeartStoreRepositoryTest in 1.067 seconds (process running for 1.455)
+2024-10-05T19:30:40.462+09:00  INFO 29618 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-05T19:30:40.670+09:00  INFO 29618 --- [    Test worker] c.u.t.d.s.r.StoreRepositoryTest          : Started StoreRepositoryTest in 1.185 seconds (process running for 1.569)
 Hibernate: 
     select
         me1_0.id,
-        me1_0.benefit_count,
-        me1_0.created_at,
-        me1_0.modify_at,
-        me1_0.name,
-        me1_0.nickname,
-        me1_0.password,
-        me1_0.phone_num,
-        me1_0.profile_image,
-        me1_0.role,
-        me1_0.type 
+        me1_0.name 
     from
-        member me1_0 
-    where
-        me1_0.id=?
-Hibernate: 
-    select
-        hse1_0.id,
-        hse1_0.member_id,
-        hse1_0.store_id 
-    from
-        heart_store hse1_0 
-    where
-        hse1_0.member_id=?
-Hibernate: 
-    select
-        me1_0.id,
-        me1_0.benefit_count,
-        me1_0.created_at,
-        me1_0.modify_at,
-        me1_0.name,
-        me1_0.nickname,
-        me1_0.password,
-        me1_0.phone_num,
-        me1_0.profile_image,
-        me1_0.role,
-        me1_0.type 
-    from
-        member me1_0 
+        menu me1_0 
     where
         me1_0.id=?
 Hibernate: 
@@ -333,58 +308,71 @@ Hibernate:
     from
         store se1_0 
     where
-        se1_0.id=?
+        se1_0.menu_id=?
 Hibernate: 
     select
-        hse1_0.id,
-        hse1_0.member_id,
-        hse1_0.store_id 
+        se1_0.id,
+        se1_0.address,
+        se1_0.created_at,
+        se1_0.hot_yn,
+        se1_0.image,
+        se1_0.menu_id,
+        se1_0.modify_at,
+        se1_0.name,
+        se1_0.place_info,
+        se1_0.region_id,
+        se1_0.review_count,
+        se1_0.review_span,
+        se1_0.sale_info,
+        se1_0.service_info,
+        se1_0.spon_info,
+        se1_0.sub_title,
+        se1_0.title,
+        se1_0.use_info 
     from
-        heart_store hse1_0 
+        store se1_0 
     where
-        hse1_0.member_id=? 
-        and hse1_0.store_id=?
+        se1_0.title like ? escape '\' 
+        or se1_0.name like ? escape '\'
+Hibernate: 
+    select
+        re1_0.id,
+        re1_0.name,
+        re1_0.upper_id 
+    from
+        region re1_0 
+    where
+        re1_0.id=?
+Hibernate: 
+    select
+        se1_0.id,
+        se1_0.address,
+        se1_0.created_at,
+        se1_0.hot_yn,
+        se1_0.image,
+        se1_0.menu_id,
+        se1_0.modify_at,
+        se1_0.name,
+        se1_0.place_info,
+        se1_0.region_id,
+        se1_0.review_count,
+        se1_0.review_span,
+        se1_0.sale_info,
+        se1_0.service_info,
+        se1_0.spon_info,
+        se1_0.sub_title,
+        se1_0.title,
+        se1_0.use_info 
+    from
+        store se1_0 
+    where
+        se1_0.region_id=?
 Hibernate: 
     select
         me1_0.id,
-        me1_0.benefit_count,
-        me1_0.created_at,
-        me1_0.modify_at,
-        me1_0.name,
-        me1_0.nickname,
-        me1_0.password,
-        me1_0.phone_num,
-        me1_0.profile_image,
-        me1_0.role,
-        me1_0.type 
+        me1_0.name 
     from
-        member me1_0 
-    where
-        me1_0.id=?
-Hibernate: 
-    select
-        hse1_0.id,
-        hse1_0.member_id,
-        hse1_0.store_id 
-    from
-        heart_store hse1_0 
-    where
-        hse1_0.member_id=?
-Hibernate: 
-    select
-        me1_0.id,
-        me1_0.benefit_count,
-        me1_0.created_at,
-        me1_0.modify_at,
-        me1_0.name,
-        me1_0.nickname,
-        me1_0.password,
-        me1_0.phone_num,
-        me1_0.profile_image,
-        me1_0.role,
-        me1_0.type 
-    from
-        member me1_0 
+        menu me1_0 
     where
         me1_0.id=?
 Hibernate: 
@@ -410,17 +398,40 @@ Hibernate:
     from
         store se1_0 
     where
-        se1_0.id=?
+        se1_0.menu_id=?
 Hibernate: 
     select
-        hse1_0.id,
-        hse1_0.member_id,
-        hse1_0.store_id 
+        re1_0.id,
+        re1_0.name,
+        re1_0.upper_id 
     from
-        heart_store hse1_0 
+        region re1_0 
     where
-        hse1_0.member_id=? 
-        and hse1_0.store_id=?
+        re1_0.id=?
+Hibernate: 
+    select
+        se1_0.id,
+        se1_0.address,
+        se1_0.created_at,
+        se1_0.hot_yn,
+        se1_0.image,
+        se1_0.menu_id,
+        se1_0.modify_at,
+        se1_0.name,
+        se1_0.place_info,
+        se1_0.region_id,
+        se1_0.review_count,
+        se1_0.review_span,
+        se1_0.sale_info,
+        se1_0.service_info,
+        se1_0.spon_info,
+        se1_0.sub_title,
+        se1_0.title,
+        se1_0.use_info 
+    from
+        store se1_0 
+    where
+        se1_0.region_id=?
 </pre>
 </span>
 </div>
@@ -432,7 +443,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 3. 오후 2:15:18</p>
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 10. 5. 오후 7:30:41</p>
 </div>
 </div>
 </body>
