@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.File;
 
-@Configuration
+//@Configuration
 public class LocalFileConfig {
 
     @Value("${local.upload.directory}")

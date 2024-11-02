@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class LocalFileService implements FileService {
 

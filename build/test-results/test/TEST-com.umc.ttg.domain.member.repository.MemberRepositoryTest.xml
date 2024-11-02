@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.umc.ttg.domain.member.repository.MemberRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-11-02T11:27:40" hostname="onam-uiui-MacBookAir.local" time="0.011">
+  <properties/>
+  <testcase name="findByName_은_데이터가_없으면_Optional_empty_를_내려준다()" classname="com.umc.ttg.domain.member.repository.MemberRepositoryTest" time="0.005"/>
+  <testcase name="findByName_로_유저_데이터를_찾아올_수_있다()" classname="com.umc.ttg.domain.member.repository.MemberRepositoryTest" time="0.005"/>
+  <system-out><![CDATA[2024-11-02T20:27:40.722+09:00  INFO 80713 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.umc.ttg.domain.member.repository.MemberRepositoryTest]: MemberRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-11-02T20:27:40.725+09:00  INFO 80713 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.umc.ttg.TtgApplication for test class com.umc.ttg.domain.member.repository.MemberRepositoryTest
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.name=?
+Hibernate: 
+    select
+        me1_0.id,
+        me1_0.benefit_count,
+        me1_0.created_at,
+        me1_0.modify_at,
+        me1_0.name,
+        me1_0.nickname,
+        me1_0.password,
+        me1_0.phone_num,
+        me1_0.profile_image,
+        me1_0.role,
+        me1_0.type 
+    from
+        member me1_0 
+    where
+        me1_0.name=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
