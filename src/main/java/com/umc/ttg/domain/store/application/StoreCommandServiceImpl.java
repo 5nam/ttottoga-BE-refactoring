@@ -5,12 +5,14 @@ import com.umc.ttg.domain.member.entity.MemberEntity;
 import com.umc.ttg.domain.member.exception.handler.MemberHandler;
 import com.umc.ttg.domain.member.repository.HeartStoreRepository;
 import com.umc.ttg.domain.member.repository.MemberRepository;
-import com.umc.ttg.domain.store.dto.*;
-import com.umc.ttg.domain.store.entity.StoreEntity;
-import com.umc.ttg.domain.store.exception.handler.StoreHandler;
+import com.umc.ttg.domain.store.dto.HeartStoreResponseDto;
+import com.umc.ttg.domain.store.dto.StoreRequestDto;
+import com.umc.ttg.domain.store.dto.StoreResponseDto;
 import com.umc.ttg.domain.store.dto.converter.StoreConverter;
 import com.umc.ttg.domain.store.entity.MenuEntity;
 import com.umc.ttg.domain.store.entity.RegionEntity;
+import com.umc.ttg.domain.store.entity.StoreEntity;
+import com.umc.ttg.domain.store.exception.handler.StoreHandler;
 import com.umc.ttg.domain.store.repository.MenuRepository;
 import com.umc.ttg.domain.store.repository.RegionRepository;
 import com.umc.ttg.domain.store.repository.StoreRepository;
@@ -19,7 +21,6 @@ import com.umc.ttg.global.common.ResponseCode;
 import com.umc.ttg.global.util.file.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +32,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class StoreCommandServiceImpl implements StoreCommandService {
 
-    private final FileService awsS3FileService;
+    private final FileService fileService;
     private final StoreRepository storeRepository;
     private final MenuRepository menuRepository;
     private final RegionRepository regionRepository;
@@ -52,7 +53,8 @@ public class StoreCommandServiceImpl implements StoreCommandService {
                 .storeRequestDto(storeRequestDto)
                 .menu(menuEntity)
                 .region(regionEntity)
-                .storeImage(getS3ImageLink(storeRequestDto.getStoreImage())).build();
+                .storeImage(getImageLink(storeRequestDto.getStoreImage()))
+                .build();
 
         StoreEntity savedStoreEntity = storeRepository.save(storeEntity);
 
@@ -60,14 +62,16 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     }
 
-    private String getS3ImageLink(MultipartFile multipartFile) throws IOException {
+    private String getImageLink(MultipartFile multipartFile) throws IOException {
 
-        return awsS3FileService.upload(multipartFile, "storeImage");
+        return fileService.upload(multipartFile, "storeImage");
 
     }
 
 
-
+    /**
+     * FIXME: 변경하는 항목만 알아내서 update 하고 싶은데..
+     */
     @Override
     @Transactional
     public BaseResponseDto<StoreResponseDto> updateStore(StoreRequestDto storeRequestDto, Long storeId) throws IOException {
@@ -81,7 +85,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         RegionEntity regionEntity = regionRepository.findById(storeRequestDto.getRegion())
                 .orElseThrow(() -> new StoreHandler(ResponseCode._BAD_REQUEST));
 
-        storeEntity.update(storeRequestDto, menuEntity, regionEntity, getS3ImageLink(storeRequestDto.getStoreImage()));
+        storeEntity.update(storeRequestDto, menuEntity, regionEntity, getImageLink(storeRequestDto.getStoreImage()));
 
         return BaseResponseDto.onSuccess(StoreConverter.convertToStoreResponse(storeEntity.getId()), ResponseCode.OK);
 

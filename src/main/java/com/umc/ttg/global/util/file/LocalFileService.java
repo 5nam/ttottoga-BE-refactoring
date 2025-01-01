@@ -4,17 +4,20 @@ import com.umc.ttg.global.common.ResponseCode;
 import com.umc.ttg.global.error.handler.LocalFileHandler;
 import com.umc.ttg.global.util.uuid.UuidHolder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.UUID;
 
-//@Service
+@Service
 @RequiredArgsConstructor
+@Slf4j
+@Profile("test")
 public class LocalFileService implements FileService {
 
     @Value("${local.upload.directory}")
@@ -41,7 +44,14 @@ public class LocalFileService implements FileService {
         String randomFileName = directoryName + "/" + uuidHolder.randomUuid() + originalFileName;
         File file = new File(fileUploadDir + "/" + randomFileName);
 
+        File parentDir = file.getParentFile();
+        if(!parentDir.exists() && !parentDir.mkdir()) {
+            throw new LocalFileHandler(ResponseCode.FILE_SAVE_FAIL);
+        }
+
         // file 저장
+        log.info(String.valueOf(file.exists()));
+
         if (file.createNewFile()) {
             try(FileOutputStream fos = new FileOutputStream(file)) {
                 fos.write(multipartFile.getBytes());

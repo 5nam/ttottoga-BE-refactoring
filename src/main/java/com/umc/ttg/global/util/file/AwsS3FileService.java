@@ -11,6 +11,7 @@ import com.umc.ttg.global.util.uuid.UuidHolder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Profile("!test")
 public class AwsS3FileService implements FileService {
 
     private final AmazonS3 amazonS3;

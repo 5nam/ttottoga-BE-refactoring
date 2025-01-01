@@ -58,6 +58,16 @@ class StoreRepositoryTest {
         assertThat(results.size()).isEqualTo(2);
     }
 
+    @Test
+    void findByTitleContainingOrNameContaining_은_검색어에_해당하는_상점이_없으면_빈_리스트를_반환한다() {
+        //given
+        //when
+        String keyword = "1234dd";
+        List<StoreEntity> results = storeRepository.findByTitleContainingOrNameContaining(keyword, keyword);
+        //then
+        assertThat(results.isEmpty()).isTrue();
+    }
+
     /**
      * TODO : 띄어쓰기 상관없이 똑같은 결과가 나오도록 개선하기
      */
