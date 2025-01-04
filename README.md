@@ -1,4 +1,7 @@
 # TTOTTOGA-PROJECT
+## 기존 팀 프로젝트 리포지토리(지금 리포지토리는 리팩터링을 위해 새로 만든 리포지토리)
+
+[기존 리포지토리를 확인하고 싶다면 클릭!](https://github.com/Ttottoga/BE)
 
 ## 서비스 설명
 ![image](https://github.com/Ttottoga/BE/assets/86754153/3572108f-67e1-4a58-8e6b-2d3a5898243c)
