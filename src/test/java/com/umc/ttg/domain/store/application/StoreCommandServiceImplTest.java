@@ -10,6 +10,7 @@ import com.umc.ttg.domain.store.entity.StoreEntity;
 import com.umc.ttg.domain.store.exception.handler.StoreHandler;
 import com.umc.ttg.domain.store.repository.StoreRepository;
 import com.umc.ttg.global.common.BaseResponseDto;
+import com.umc.ttg.global.util.file.LocalFileService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +37,17 @@ class StoreCommandServiceImplTest {
     private StoreRepository storeRepository;
     @Autowired
     private HeartStoreRepository heartStoreRepository;
+    @Autowired
+    private LocalFileService localFileService;
+
+    /**
+     * FIXME: 상점 저장, 수정마다 이미지 저장되는 것 한번에 삭제할 수 있도록 변경
+     * @throws IOException
+     */
+//    @AfterEach
+//    void deleteAllFiles() {
+//
+//    }
 
     @Test
     void 상점을_저장할_수_있다() throws IOException {
@@ -56,6 +68,9 @@ class StoreCommandServiceImplTest {
 
         // then
         assertThat(storeResponseDtoBaseResponseDto.getResult().getStoreId()).isEqualTo(2L);
+
+        // 테스트 파일 삭제
+        localFileService.remove(storeRepository.findById(storeResponseDtoBaseResponseDto.getResult().getStoreId()).get().getImage());
     }
 
     @Test
@@ -120,6 +135,8 @@ class StoreCommandServiceImplTest {
 
         // then
         assertThat(store.get().getName()).isEqualTo("change");
+
+        localFileService.remove(store.get().getImage());
     }
 
     @Test
