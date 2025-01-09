@@ -77,13 +77,13 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     public BaseResponseDto<StoreResponseDto> updateStore(StoreRequestDto storeRequestDto, Long storeId) throws IOException {
 
         StoreEntity storeEntity = storeRepository.findById(storeId)
-                .orElseThrow(() -> new StoreHandler(ResponseCode._BAD_REQUEST));
+                .orElseThrow(() -> new StoreHandler(ResponseCode.STORE_NOT_FOUND));
 
         MenuEntity menuEntity = menuRepository.findById(storeRequestDto.getMenu())
-                .orElseThrow(() -> new StoreHandler(ResponseCode._BAD_REQUEST));
+                .orElseThrow(() -> new StoreHandler(ResponseCode.MENU_NOT_FOUND));
 
         RegionEntity regionEntity = regionRepository.findById(storeRequestDto.getRegion())
-                .orElseThrow(() -> new StoreHandler(ResponseCode._BAD_REQUEST));
+                .orElseThrow(() -> new StoreHandler(ResponseCode.REGION_NOT_FOUND));
 
         storeEntity.update(storeRequestDto, menuEntity, regionEntity, getImageLink(storeRequestDto.getStoreImage()));
 
