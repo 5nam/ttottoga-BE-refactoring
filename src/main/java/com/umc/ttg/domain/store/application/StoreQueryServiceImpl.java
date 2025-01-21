@@ -38,7 +38,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     private final HeartStoreRepository heartStoreRepository;
 
     @Override
-    public BaseResponseDto<StoreFindResponseDto> findStore(Long storeId, String memberName) {
+    public BaseResponseDto<StoreFindResponseDto> getById(Long storeId, String memberName) {
 
         MemberEntity memberEntity = validateCorrectMember(memberName);
 
@@ -57,7 +57,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
      * 한 번의 요청마다 20개씩 넘겨줌(무한 스크롤 방식)
      */
     @Override
-    public BaseResponseDto<Page<StoreResultResponseDto>> findStoreByRegion(Long regionId, int page, int size, String memberName) {
+    public BaseResponseDto<Page<StoreResultResponseDto>> getByRegion(Long regionId, int page, int size, String memberName) {
 
         validatePageAndSize(page, size);
 
@@ -66,11 +66,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getStoresByRegion(regionEntity, memberEntity, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(getResponseByRegion(regionEntity, memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getStoresByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
+    private Page<StoreResultResponseDto> getResponseByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> stores =
                 storeRepository.findByRegion(regionEntity).stream()
@@ -84,7 +84,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     }
 
     @Override
-    public BaseResponseDto<Page<StoreResultResponseDto>> findStoreByMenu(Long menuId, int page, int size, String memberName) {
+    public BaseResponseDto<Page<StoreResultResponseDto>> getByMenu(Long menuId, int page, int size, String memberName) {
 
         validatePageAndSize(page, size);
 
@@ -93,11 +93,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getStoresByMenu(menuEntity, memberEntity, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(getResponseByMenu(menuEntity, memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getStoresByMenu(MenuEntity menuEntity, MemberEntity memberEntity, Pageable pageable) {
+    private Page<StoreResultResponseDto> getResponseByMenu(MenuEntity menuEntity, MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> stores =
                 storeRepository.findByMenu(menuEntity).stream()
@@ -111,7 +111,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     }
 
     @Override
-    public BaseResponseDto<Page<StoreResultResponseDto>> searchStore(String keyword, int page, int size, String memberName) {
+    public BaseResponseDto<Page<StoreResultResponseDto>> search(String keyword, int page, int size, String memberName) {
 
         validatePageAndSize(page, size);
 
@@ -138,17 +138,17 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     }
 
     @Override
-    public BaseResponseDto<Page<StoreResultResponseDto>> getHeartStores(int page, int size, String memberName) {
+    public BaseResponseDto<Page<StoreResultResponseDto>> findHeartStores(int page, int size, String memberName) {
 
         MemberEntity memberEntity = validateCorrectMember(memberName);
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return BaseResponseDto.onSuccess(getPagingHeartStores(memberEntity, pageable), ResponseCode.OK);
+        return BaseResponseDto.onSuccess(findPagingHeartStores(memberEntity, pageable), ResponseCode.OK);
 
     }
 
-    private Page<StoreResultResponseDto> getPagingHeartStores(MemberEntity memberEntity, Pageable pageable) {
+    private Page<StoreResultResponseDto> findPagingHeartStores(MemberEntity memberEntity, Pageable pageable) {
 
         List<StoreResultResponseDto> heartStores = heartStoreRepository.findByMember(memberEntity).stream()
                 .map(HeartStoreEntity::getStore)
@@ -211,18 +211,18 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     }
 
     @Override
-    public BaseResponseDto<HomeResponseDto> getHome(String memberName) {
+    public BaseResponseDto<HomeResponseDto> findHome(String memberName) {
 
         MemberEntity memberEntity = validateCorrectMember(memberName);
 
         // top 15
-        List<HomeResponseDto.Top15> top15 = getTop15(memberEntity);
+        List<HomeResponseDto.Top15> top15 = findTop15(memberEntity);
 
         // hotStore - 랜덤으로
-        List<HomeResponseDto.HotStore> hotStore = getHotStore();
+        List<HomeResponseDto.HotStore> hotStore = findHotStore();
 
         // reviews - 랜덤으로
-        List<HomeResponseDto.HomeReviews> homeReview = getHomeReview();
+        List<HomeResponseDto.HomeReviews> homeReview = findHomeReview();
 
         // ResponseDTO
         HomeResponseDto homeResponseDto = HomeResponseDto.builder()
@@ -235,7 +235,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private List<HomeResponseDto.HomeReviews> getHomeReview() {
+    private List<HomeResponseDto.HomeReviews> findHomeReview() {
 
         List<ReviewEntity> reviewEntities = reviewRepository.findAll();
 
@@ -248,7 +248,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private List<HomeResponseDto.HotStore> getHotStore() {
+    private List<HomeResponseDto.HotStore> findHotStore() {
 
         List<HomeResponseDto.HotStore> hotStores = storeRepository.findAll().stream()
                 .filter(store -> store.getHotYn().equals('y'))
@@ -261,7 +261,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-    private List<HomeResponseDto.Top15> getTop15(MemberEntity memberEntity) {
+    private List<HomeResponseDto.Top15> findTop15(MemberEntity memberEntity) {
 
         List<HomeResponseDto.Top15> top15 = new ArrayList<>();
 

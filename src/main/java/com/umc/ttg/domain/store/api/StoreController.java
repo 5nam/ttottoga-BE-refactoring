@@ -46,7 +46,7 @@ public class StoreController {
         String memberName = "";
 
 
-        return storeQueryService.findStore(storeId, memberName);
+        return storeQueryService.getById(storeId, memberName);
 
     }
 
@@ -70,7 +70,7 @@ public class StoreController {
 //        String memberName = authService.permitAllAccess(request);
         String memberName = "";
 
-        return storeQueryService.findStoreByRegion(regionId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
+        return storeQueryService.getByRegion(regionId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
 
     }
 
@@ -88,7 +88,7 @@ public class StoreController {
          */
 //        String memberName = authService.permitAllAccess(request);
         String memberName = "";
-        return storeQueryService.findStoreByMenu(menuId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
+        return storeQueryService.getByMenu(menuId.orElse(1L), page.orElse(0), size.orElse(20), memberName);
 
     }
 
@@ -106,7 +106,7 @@ public class StoreController {
          */
 //        String memberName = authService.permitAllAccess(request);
         String memberName = "";
-        return storeQueryService.getHome(memberName);
+        return storeQueryService.findHome(memberName);
 
     }
 
@@ -124,7 +124,7 @@ public class StoreController {
          */
 //        String memberName = authService.permitAllAccess(request);
         String memberName = "";
-        return storeQueryService.searchStore(keyword, page.orElse(0), size.orElse(20), memberName);
+        return storeQueryService.search(keyword, page.orElse(0), size.orElse(20), memberName);
 
     }
 
@@ -150,7 +150,7 @@ public class StoreController {
          */
 //        String memberName = authService.permitAllAccess(request);
         String memberName = "";
-        return storeQueryService.getHeartStores(page.orElse(0), size.orElse(20), memberName);
+        return storeQueryService.findHeartStores(page.orElse(0), size.orElse(20), memberName);
 
     }
 

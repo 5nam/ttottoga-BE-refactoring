@@ -6,16 +6,16 @@ import org.springframework.data.domain.Page;
 
 public interface StoreQueryService {
 
-    BaseResponseDto<StoreFindResponseDto> findStore(Long storeId, String memberName);
+    BaseResponseDto<StoreFindResponseDto> getById(Long storeId, String memberName);
 
-    BaseResponseDto<HomeResponseDto> getHome(String memberName);
+    BaseResponseDto<HomeResponseDto> findHome(String memberName);
 
-    BaseResponseDto<Page<StoreResultResponseDto>> findStoreByRegion(Long regionId, int page, int size, String memberName);
+    BaseResponseDto<Page<StoreResultResponseDto>> getByRegion(Long regionId, int page, int size, String memberName);
 
-    BaseResponseDto<Page<StoreResultResponseDto>> findStoreByMenu(Long menuId, int page, int size, String memberName);
+    BaseResponseDto<Page<StoreResultResponseDto>> getByMenu(Long menuId, int page, int size, String memberName);
 
-    BaseResponseDto<Page<StoreResultResponseDto>> searchStore(String keyword, int page, int size, String memberName);
+    BaseResponseDto<Page<StoreResultResponseDto>> search(String keyword, int page, int size, String memberName);
 
-    BaseResponseDto<Page<StoreResultResponseDto>> getHeartStores(int page, int size, String memberName);
+    BaseResponseDto<Page<StoreResultResponseDto>> findHeartStores(int page, int size, String memberName);
 
 }
