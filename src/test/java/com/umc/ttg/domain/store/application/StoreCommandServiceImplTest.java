@@ -64,7 +64,7 @@ class StoreCommandServiceImplTest {
                 .subTitle("subTitle").menu(1L).region(1L).build();
 
         // when
-        BaseResponseDto<StoreResponseDto> storeResponseDtoBaseResponseDto = storeCommandService.saveStore(storeRequestDto);
+        BaseResponseDto<StoreResponseDto> storeResponseDtoBaseResponseDto = storeCommandService.create(storeRequestDto);
 
         // then
         assertThat(storeResponseDtoBaseResponseDto.getResult().getStoreId()).isEqualTo(2L);
@@ -89,7 +89,7 @@ class StoreCommandServiceImplTest {
 
         // when
         // then
-        assertThatThrownBy(() -> storeCommandService.saveStore(storeRequestDto))
+        assertThatThrownBy(() -> storeCommandService.create(storeRequestDto))
                 .isInstanceOf(StoreHandler.class)
                 .hasMessageContaining("카테고리에 없는 메뉴입니다.");
     }
@@ -110,7 +110,7 @@ class StoreCommandServiceImplTest {
 
         // when
         // then
-        assertThatThrownBy(() -> storeCommandService.saveStore(storeRequestDto))
+        assertThatThrownBy(() -> storeCommandService.create(storeRequestDto))
                 .isInstanceOf(StoreHandler.class)
                 .hasMessageContaining("카테고리에 없는 지역입니다.");
     }
@@ -130,7 +130,7 @@ class StoreCommandServiceImplTest {
                 .subTitle("subTitle").menu(1L).region(1L).build();
 
         // when
-        BaseResponseDto<StoreResponseDto> storeResponseDtoBaseResponseDto = storeCommandService.updateStore(storeRequestDto, 1L);
+        BaseResponseDto<StoreResponseDto> storeResponseDtoBaseResponseDto = storeCommandService.update(storeRequestDto, 1L);
         Optional<StoreEntity> store = storeRepository.findById(1L);
 
         // then
@@ -155,7 +155,7 @@ class StoreCommandServiceImplTest {
 
         // when
         // then
-        assertThatThrownBy(() -> storeCommandService.updateStore(storeRequestDto, 100L))
+        assertThatThrownBy(() -> storeCommandService.update(storeRequestDto, 100L))
                 .isInstanceOf(StoreHandler.class)
                 .hasMessageContaining("존재하지 않는 상점입니다.");
     }
@@ -176,7 +176,7 @@ class StoreCommandServiceImplTest {
 
         // when
         // then
-        assertThatThrownBy(() -> storeCommandService.updateStore(storeRequestDto, 1L))
+        assertThatThrownBy(() -> storeCommandService.update(storeRequestDto, 1L))
                 .isInstanceOf(StoreHandler.class)
                 .hasMessageContaining("카테고리에 없는 메뉴입니다.");
     }
@@ -197,7 +197,7 @@ class StoreCommandServiceImplTest {
 
         // when
         // then
-        assertThatThrownBy(() -> storeCommandService.updateStore(storeRequestDto, 1L))
+        assertThatThrownBy(() -> storeCommandService.update(storeRequestDto, 1L))
                 .isInstanceOf(StoreHandler.class)
                 .hasMessageContaining("카테고리에 없는 지역입니다.");
     }

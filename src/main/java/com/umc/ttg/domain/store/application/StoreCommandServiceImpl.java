@@ -41,7 +41,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     @Transactional // 저장은 모든 과정이 완료되어야 하므로
-    public BaseResponseDto<StoreResponseDto> saveStore(StoreRequestDto storeRequestDto) throws IOException {
+    public BaseResponseDto<StoreResponseDto> create(StoreRequestDto storeRequestDto) throws IOException {
 
         MenuEntity menuEntity = menuRepository.findById(storeRequestDto.getMenu())
                 .orElseThrow(() -> new StoreHandler(ResponseCode.MENU_NOT_FOUND));
@@ -74,7 +74,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
      */
     @Override
     @Transactional
-    public BaseResponseDto<StoreResponseDto> updateStore(StoreRequestDto storeRequestDto, Long storeId) throws IOException {
+    public BaseResponseDto<StoreResponseDto> update(StoreRequestDto storeRequestDto, Long storeId) throws IOException {
 
         StoreEntity storeEntity = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ResponseCode.STORE_NOT_FOUND));

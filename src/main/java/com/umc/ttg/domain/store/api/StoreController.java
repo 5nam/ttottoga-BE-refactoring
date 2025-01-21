@@ -28,7 +28,7 @@ public class StoreController {
     @PostMapping
     public BaseResponseDto<StoreResponseDto> createStore(@ModelAttribute @Valid StoreRequestDto storeRequestDto) throws IOException {
 
-        return storeCommandService.saveStore(storeRequestDto);
+        return storeCommandService.create(storeRequestDto);
 
     }
 
@@ -136,7 +136,7 @@ public class StoreController {
          */
         Long memberId = 2L;
 
-        return storeCommandService.updateStore(storeRequestDto, storeId);
+        return storeCommandService.update(storeRequestDto, storeId);
 
     }
 
