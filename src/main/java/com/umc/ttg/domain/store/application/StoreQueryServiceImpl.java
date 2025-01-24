@@ -39,13 +39,19 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     @Override
     public BaseResponseDto<StoreFindResponseDto> getById(Long storeId, String memberName) {
-
+        // 상점 내부를 조회하는 것은 회원가입 없이도 가능하므로 체크만 한다?
         MemberEntity memberEntity = validateCorrectMember(memberName);
 
         StoreEntity storeEntity = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ResponseCode.STORE_NOT_FOUND));
 
+        /**
+         * FIXME: MemberEntity 에 null 이 담기면, memberName 즉, 로그인 안한 상태로 접근하는 것이므로 아예 아래가 False 여도 상관 없음
+         * 불필요한 조회 줄이기 위해 고치기!
+         */
+        // 리뷰를 남긴 적이 있는 상점인지에 대한 여부
         boolean submitReview = reviewRepository.findByStoreAndMember(storeEntity, memberEntity).isPresent();
+        // 관심으로 등록한 적이 있는 상점인지에 대한 여부
         boolean heartStore = heartStoreRepository.findByMemberAndStore(memberEntity, storeEntity).isPresent();
 
         return BaseResponseDto.onSuccess(StoreConverter.convertToStoreFindResponseDto(storeEntity, submitReview, heartStore), ResponseCode.OK);
@@ -210,6 +216,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         }
     }
 
+    /**
+     * FIXME : 홈과 관련된 기능과 상점과 관련된 기능을 나눠야 할듯
+     * @param memberName
+     * @return
+     */
     @Override
     public BaseResponseDto<HomeResponseDto> findHome(String memberName) {
 

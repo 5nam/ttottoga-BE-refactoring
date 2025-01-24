@@ -27,7 +27,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
-@Sql("/sql/store-service-test-data.sql")
+@Sql("/sql/store-command-service-test-data.sql")
 @ActiveProfiles("test")
 class StoreCommandServiceImplTest {
 
