@@ -62,6 +62,12 @@ public class StoreQueryServiceImpl implements StoreQueryService {
      * HOT 상점 먼저 랜덤으로 배치 후, 다음은 베스트(또또가 누적 리뷰 순)순으로 배치
      * 한 번의 요청마다 20개씩 넘겨줌(무한 스크롤 방식)
      */
+
+    /**
+     * FIXME : JPA 의 Page 리턴 사용하고, map 으로 리턴값 반환하는 식으로 변환
+     * - 지금은 너무 복잡한 로직임
+     * - 사용법을 몰라서 너무 붙여넣는 식으로 코드를 짬
+     */
     @Override
     public BaseResponseDto<Page<StoreResultResponseDto>> getByRegion(Long regionId, int page, int size, String memberName) {
 
@@ -89,6 +95,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
+    /**
+     * FIXME : JPA 의 Page 리턴 사용하고, map 으로 리턴값 반환하는 식으로 변환
+     * - 지금은 너무 복잡한 로직임
+     * - 사용법을 몰라서 너무 붙여넣는 식으로 코드를 짬
+     */
     @Override
     public BaseResponseDto<Page<StoreResultResponseDto>> getByMenu(Long menuId, int page, int size, String memberName) {
 
