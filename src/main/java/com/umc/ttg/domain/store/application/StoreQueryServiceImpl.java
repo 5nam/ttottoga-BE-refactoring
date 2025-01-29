@@ -6,7 +6,9 @@ import com.umc.ttg.domain.member.repository.HeartStoreRepository;
 import com.umc.ttg.domain.member.repository.MemberRepository;
 import com.umc.ttg.domain.review.entity.ReviewEntity;
 import com.umc.ttg.domain.review.repository.ReviewRepository;
-import com.umc.ttg.domain.store.dto.*;
+import com.umc.ttg.domain.store.dto.HomeResponseDto;
+import com.umc.ttg.domain.store.dto.StoreFindResponseDto;
+import com.umc.ttg.domain.store.dto.StoreResultResponseDto;
 import com.umc.ttg.domain.store.dto.converter.StoreConverter;
 import com.umc.ttg.domain.store.entity.MenuEntity;
 import com.umc.ttg.domain.store.entity.RegionEntity;
@@ -22,7 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -76,24 +81,29 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         MemberEntity memberEntity = validateCorrectMember(memberName);
         RegionEntity regionEntity = regionRepository.findById(regionId).orElseThrow(() -> new StoreHandler(ResponseCode.REGION_NOT_FOUND));
 
-        Pageable pageable = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "HotYn", "ReviewCount"));
 
-        return BaseResponseDto.onSuccess(getResponseByRegion(regionEntity, memberEntity, pageable), ResponseCode.OK);
+        Page<StoreEntity> result = storeRepository.findByRegionId(regionId, pageRequest);
+        Page<StoreResultResponseDto> results = result.map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
+                                                            store.getImage(), store.getServiceInfo(), store.getReviewCount(),
+                                                            heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent()));
 
-    }
-
-    private Page<StoreResultResponseDto> getResponseByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
-
-        List<StoreResultResponseDto> stores =
-                storeRepository.findByRegion(regionEntity).stream()
-                        .sorted(comparator())
-                        .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
-                                store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
-
-        return paging(stores,pageable);
+        return BaseResponseDto.onSuccess(results, ResponseCode.OK);
 
     }
+
+//    private Page<StoreResultResponseDto> getResponseByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
+//
+//        List<StoreResultResponseDto> stores =
+//                storeRepository.findByRegion(regionEntity).stream()
+//                        .sorted(comparator())
+//                        .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
+//                                store.getImage(), store.getServiceInfo(), store.getReviewCount(),
+//                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
+//
+//        return paging(stores,pageable);
+//
+//    }
 
     /**
      * FIXME : JPA 의 Page 리턴 사용하고, map 으로 리턴값 반환하는 식으로 변환

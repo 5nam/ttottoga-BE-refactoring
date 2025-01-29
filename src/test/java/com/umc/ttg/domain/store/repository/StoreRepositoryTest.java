@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest(showSql = true)
 @Sql("/sql/store-repository-test-data.sql")

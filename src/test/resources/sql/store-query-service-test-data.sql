@@ -20,67 +20,67 @@ insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (2, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 3, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (3, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (4, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (5, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (6, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (7, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (8, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (9, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (10, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'n', 0, 5, 'address', 1, 1);
 
 insert into `store` (`id`, `name`, `title`, `sub_title`, `image`,
                      `use_info`, `sale_info`, `place_info`, `spon_info`, `service_info`,
                      `hot_yn`, `review_count`, `review_span`, `address`, `region_id`, `menu_id`)
 values (11, 'testStore', '검색 테스트', 'subTitle', 'image',
         'use_info', 'sale_info', 'place_info', 'span_info', 'service_info',
-        'y', 0, 5, 'address', 1, 1);
+        'y', 5, 5, 'address', 1, 1);
