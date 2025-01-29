@@ -92,19 +92,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     }
 
-//    private Page<StoreResultResponseDto> getResponseByRegion(RegionEntity regionEntity, MemberEntity memberEntity, Pageable pageable) {
-//
-//        List<StoreResultResponseDto> stores =
-//                storeRepository.findByRegion(regionEntity).stream()
-//                        .sorted(comparator())
-//                        .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
-//                                store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-//                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
-//
-//        return paging(stores,pageable);
-//
-//    }
-
     /**
      * FIXME : JPA 의 Page 리턴 사용하고, map 으로 리턴값 반환하는 식으로 변환
      * - 지금은 너무 복잡한 로직임
@@ -118,22 +105,13 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         MemberEntity memberEntity = validateCorrectMember(memberName);
         MenuEntity menuEntity = menuRepository.findById(menuId).orElseThrow(() -> new StoreHandler(ResponseCode.MENU_NOT_FOUND));
 
-        Pageable pageable = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "HotYn", "ReviewCount"));
+        Page<StoreEntity> result = storeRepository.findByMenuId(menuId, pageRequest);
+        Page<StoreResultResponseDto> results = result.map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
+                store.getImage(), store.getServiceInfo(), store.getReviewCount(),
+                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent()));
 
-        return BaseResponseDto.onSuccess(getResponseByMenu(menuEntity, memberEntity, pageable), ResponseCode.OK);
-
-    }
-
-    private Page<StoreResultResponseDto> getResponseByMenu(MenuEntity menuEntity, MemberEntity memberEntity, Pageable pageable) {
-
-        List<StoreResultResponseDto> stores =
-                storeRepository.findByMenu(menuEntity).stream()
-                        .sorted(comparator())
-                        .map(store -> new StoreResultResponseDto(store.getId(), store.getTitle(),
-                                store.getImage(), store.getServiceInfo(), store.getReviewCount(),
-                                heartStoreRepository.findByMemberAndStore(memberEntity, store).isPresent())).toList();
-
-        return paging(stores,pageable);
+        return BaseResponseDto.onSuccess(results, ResponseCode.OK);
 
     }
 

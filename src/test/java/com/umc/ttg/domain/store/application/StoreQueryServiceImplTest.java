@@ -168,6 +168,25 @@ class StoreQueryServiceImplTest {
         assertThat(response.getResult().isEmpty()).isFalse();
     }
 
+    @Test
+    @DisplayName("getByMenu로 조회 시 Hot 상점 여부가 첫 번째 정렬 여부이고, 나머지는 reviewCount 순이다.")
+    void getByMenu_sort() {
+        // given
+        Long menuId = 1L;
+        String memberName = null;
+        int size = 5;
+        int page = 0;
+
+        // when
+        BaseResponseDto<Page<StoreResultResponseDto>> response = storeQueryService.getByMenu(menuId, page, size, memberName);
+
+        // then
+        assertThat(response.getResult().stream().toList().get(0).getStoreId()).isEqualTo(11L);
+        assertThat(response.getResult().stream().toList().get(1).getStoreId()).isEqualTo(1L);
+        assertThat(response.getResult().stream().toList().get(2).getStoreId()).isEqualTo(2L);
+    }
+
+
     /**
      * 궁금한 점
      * - Store 관련에서 멤버가 알맞은 멤버인지 체크하는 것인데, 이건 StoreHandler 에서 처리해야 하는지, MemberHandler 에서 처리해야 하는지 헷갈림..

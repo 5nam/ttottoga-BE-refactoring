@@ -12,6 +12,7 @@ import java.util.List;
 public interface StoreRepository extends JpaRepository<StoreEntity, Long> {
 
     Page<StoreEntity> findByRegionId(long regionId, Pageable pageable);
+    Page<StoreEntity> findByMenuId(long menuId, Pageable pageable);
     List<StoreEntity> findByRegion(RegionEntity region);
     List<StoreEntity> findByTitleContainingOrNameContaining(String keyword, String name);
     List<StoreEntity> findByMenu(MenuEntity menuEntity);
