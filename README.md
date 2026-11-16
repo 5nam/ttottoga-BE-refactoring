@@ -20,7 +20,7 @@
 
 ### [로빈/김여원](https://github.com/YeowonKIM)
 
-### [루아/오남의](https://github.com/5nam)
+### [루아](https://github.com/5nam)
 
 ### [허찬영/허찬영](https://github.com/nicehcy2)
 
